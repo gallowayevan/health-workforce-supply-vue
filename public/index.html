@@ -1,17 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>workforcevue2</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but workforcevue2 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>NC Health Workforce - North Carolina Health Professional Supply Data</title>
+  <meta name="description" content="North Carolina Health Professions Data System">
+  <meta name="author" content="Sheps Center">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/hpds.css" type="text/css">
+
+</head>
+
+<body>
+
+  <div class="header">
+    <h2 class="title">
+      <span class="carolina-blue">North Carolina</span>
+      <br>Health Professions Data System</h2>
+
+    <ul class="topnav" id="myTopnav">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <!-- <li>
+        <a href="/about.html">About</a>
+      </li> -->
+      <li>
+        <a href="http://www.shepscenter.unc.edu/programs-projects/workforce/data-publications-resources/">Publications/Data</a>
+      </li>
+      <!-- <li>
+        <a href="/help">Help</a>
+      </li> -->
+      <li class="icon">
+        <a href="javascript:void(0);" onclick="navbarRespond()">&#9776;</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+
+    <div id='app'>
+    </div>
+    <hr>
+
+    <details open>
+      <summary class="summary-header">About the Health Professions Data System</summary>
+      <p>The North Carolina Health Professions Data System (HPDS) collects and disseminates descriptive data on selected licensed
+        health professionals in North Carolina. With annual files dating back to 1979, the HPDS is the oldest continuous
+        state health workforce data system in the country.</p>
+      <p>The HPDS is maintained by the Program on Health Workforce Research and Policy at the Cecil G. Sheps Center for Health
+        Services Research at the University of North Carolina at Chapel Hill, in collaboration with the
+        <a href="https://www.ncahec.net/">North Carolina Area Health Education Centers Program (AHEC)</a>, and the state’s independent health professional
+        licensing boards. Ongoing financial support is provided by the NC AHEC Program Office and the Office of the Provost
+        at the University of North Carolina at Chapel Hill. Although the NC HPDS maintains the data system, the data remain
+        the property of their respective licensing board.
+      </p>
+      <p>
+        Data include active, licensed health professionals practicing in North Carolina as of October 31 of each data year. County
+        counts are based on primary practice location. Some providers may practice in additional locations not shown in primary
+        practice location counts.
+      </p>
+    </details>
+    <details>
+      <summary class="summary-header">Note on Underrepresented Minorities</summary>
+      <p>Underrepresented minorities include health professionals that self-identify as African-American/Black, American Indian
+        or Alaskan Native, and/or Hispanic. Health professionals that self-identify as Asian are not included in this category.
+        Both state
+        <sup>1</sup> and national
+        <sup>2</sup> data have shown that compared to the general population, Asians tend to be more represented in many (although
+        not all) health professions, particularly those requiring a doctoral degree.</p>
+      <ol>
+        <li>Spero JC. Does North Carolina’s health care workforce reflect the diversity of the state’s population? NC Med J.
+          2016; 77(2):141-145.</li>
+        <li>U.S. Department of Health and Human Services, Health Resources and Services Administration, National Center for Health
+          Workforce Analysis. Sex, Race, and Ethnic Diversity of U.S. Health Occupations (2010-2012), Rockville, Maryland;
+          2015.
+        </li>
+      </ol>
+    </details>
+    <details>
+      <summary class="summary-header">HPDS Physician and Physician Assistant Primary Area of Practice Information</summary>
+      <h6>
+        <strong>What is a Primary Area of Practice?</strong>
+      </h6>
+      <p>The NCMB annual licensure/reregistration forms request self-selected primary area of practice, defined as “
+        <em>What you primarily do as a physician</em>.” The forms note that “Primary area of practice may correspond to an ABMS/AOA
+        certification or a generally recognized area of work, such as ‘hospitalist’ or ‘administrative medicine.’”</p>
+      <h6>
+        <strong>Why doesn’t the data visualization tool have Primary Area of Practice data prior to 2011?</strong>
+      </h6>
+      <p>The NCMB began to collect data on physician and PA primary area of practice in 2011. Data on primary area of practice
+        are not available prior to 2011.</p>
+      <h6>
+        <strong>How are Primary Areas of Practice grouped in the data visualization tool?</strong>
+      </h6>
+      <p>The HPDS area of practice categories used in the data visualization tool group physicians and PAs
+        <strong>by what they primarily
+          <span style="text-decoration: underline;">do</span>,
+          <em>not</em> by how they trained.</strong> For example, adolescent medicine is categorized as general pediatrics, no
+        matter whether the branch specialty was pediatrics, family medicine, or internal medicine.</p>
+      <p>The “Primary Care Physician” and “Generalist Physician” groups include counts of physicians from multiple areas of
+        practice are not exclusive groups. For example, a physician who selects a primary area of practice of “pediatrics”
+        is included in the Primary Care Physician, Generalist Physician, and General Pediatrics groups. General Pediatrics
+        is an exclusive group, meaning that the physician is excluded from all other area of practice groups.</p>
+      <details style="margin-left: 1em;">
+        <summary style="font-size: 1.2em;">HPDS Primary Area of Practice Categories</summary>
+        <div class="many-details" style="margin-left: 1em;">
+          <details>
+            <summary>Primary Care Physician (not exclusive category)</summary>
+            <ul>
+              <li>Adolescent Medicine (FM)</li>
+              <li>Adolescent Medicine (IM)</li>
+              <li>Adolescent Medicine (Peds)</li>
+              <li>Family Medicine</li>
+              <li>General Practice</li>
+              <li>Internal Medicine</li>
+              <li>Internal Medicine-Pediatrics</li>
+              <li>Obstetrics/Gynecology</li>
+              <li>Pediatrics</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Generalist Physician (not exclusive category)</summary>
+            <ul>
+              <li>Family Medicine</li>
+              <li>Adolescent Medicine (FM)</li>
+              <li>Adolescent Medicine (IM)</li>
+              <li>Adolescent Medicine (Peds)</li>
+              <li>General Practice</li>
+              <li>Hospitalist</li>
+              <li>Internal Medicine</li>
+              <li>Internal Medicine-Pediatrics</li>
+              <li>Obstetrics/Gynecology</li>
+              <li>Osteopathic Manipulative Medicine</li>
+              <li>Pediatrics</li>
+              <li>Urgent Care Medicine</li>
+              <li>Geriatric Medicine (FM)</li>
+              <li>Critical Care Medicine (Internal Medicine)</li>
+              <li>Internal Medicine – Family Medicine</li>
+              <li>Internal Medicine – Geriatrics</li>
+              <li>Internal Medicine - Geriatrics</li>
+              <li>Medicine-OBGYN</li>
+              <li>Integrative Medicine</li>
+              <li>Student Health</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Administrative Medicine</summary>
+            <ul>
+              <li>Legal Medicine</li>
+              <li>Medical Management</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Allergy &amp; Immunology</summary>
+            <ul>
+              <li>Allergy</li>
+              <li>Allergy and Immunology</li>
+              <li>Immunology</li>
+              <li>Clinical and Laboratory Immunology (Allergy &amp; Immunology)</li>
+              <li>Clinical and Laboratory Immunology (Internal Medicine)</li>
+              <li>Clinical and Laboratory Immunology (Pediatrics)</li>
+              <li>Clinical and Laboratory Dermatological Immunology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Anesthesiology</summary>
+            <ul>
+              <li>Anesthesiology</li>
+              <li>Adult Cardiothoracic Anesthesiology (Anesthesiology)</li>
+              <li>Critical Care Medicine - Anesthesiology</li>
+              <li>Obstetric Anesthesiology (Anesthesiology)</li>
+              <li>Pediatric Anesthesiology (Anesthesiology)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Cardiology</summary>
+            <ul>
+              <li>Cardiovascular Disease</li>
+              <li>Advanced Heart Failure and Transplant Cardiology</li>
+              <li>Clinical Cardiac Electrophysiology</li>
+              <li>Interventional Cardiology</li>
+              <li>Vascular Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Critical Care Medicine, General</summary>
+            <ul>
+              <li>Critical Care Medicine (Internal Medicine)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Dermatology</summary>
+            <ul>
+              <li>Dermatology</li>
+              <li>Dermatologic Surgery</li>
+              <li>MOHS Micrographic Surgery</li>
+              <li>Micrographic Surgery</li>
+              <li>Internal Medicine - Dermatology</li>
+              <li>Procedural Dermatology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Emergency Medicine</summary>
+            <ul>
+              <li>Emergency Medicine</li>
+              <li>Critical Care Medicine (Emergency Medicine)</li>
+              <li>Emergency Medical Services</li>
+              <li>Emergency Medicine/Family Medicine</li>
+              <li>Internal Med/Emergency Med/Critical Care Med</li>
+              <li>Internal Medicine - Emergency Medicine</li>
+              <li>Medical Toxicology (Emergency Medicine)</li>
+              <li>Sports Medicine (Emergency Medicine)</li>
+              <li>Undersea and Hyperbaric Medicine (Emergency Medicine)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Endocrinology</summary>
+            <ul>
+              <li>Endocrinology, Diabetes &amp; Metabolism</li>
+              <li>Diabetes</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Family Medicine</summary>
+            <ul>
+              <li>Family Medicine, Family Practice</li>
+              <li>General Practice</li>
+              <li>Osteopathic Manipulative Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Gastroenterology</summary>
+            <ul>
+              <li>Gastroenterology</li>
+              <li>Hepatology</li>
+              <li>Transplant Hepatology (Internal Medicine)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>General Surgery</summary>
+            <ul>
+              <li>General Surgery</li>
+              <li>Abdominal Surgery</li>
+            </ul>
+          </details>
+          <details>
+            <summary>General Surgery, Specialty</summary>
+            <ul>
+              <li>Colon and Rectal Surgery</li>
+              <li>Proctology</li>
+              <li>Surgical Critical Care (Surgery)</li>
+              <li>Transplant Surgery</li>
+              <li>Trauma Surgery</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Geriatrics</summary>
+            <ul>
+              <li>Geriatric Medicine (FM)</li>
+              <li>Internal Medicine - Geriatrics</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Hematology/Oncology</summary>
+            <ul>
+              <li>Hematology/Oncology</li>
+              <li>Hematology</li>
+              <li>Hematology (Internal Medicine)</li>
+              <li>Hematology (Pathology)</li>
+              <li>Oncology</li>
+              <li>Medical Oncology</li>
+              <li>Neoplastic Disease</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Hospice and Palliative Medicine</summary>
+            <ul>
+              <li>Hospice and Palliative Medicine</li>
+              <li>Hospice &amp; Palliative Care (OBGYN)</li>
+              <li>Hospice &amp; Palliative Medicine (Anesthesiology)</li>
+              <li>Hospice &amp; Palliative Medicine (Emergency Medicine)</li>
+              <li>Hospice &amp; Palliative Medicine (Family Medicine)</li>
+              <li>Hospice &amp; Palliative Medicine (Physical Medicine &amp; Rehabilitation)</li>
+              <li>Hospice &amp; Palliative Medicine (Psychiatry &amp; Neurology)</li>
+              <li>Hospice &amp; Palliative Medicine (Radiology)</li>
+              <li>Hospice &amp; Palliative Medicine (Surgery)</li>
+              <li>Hospice and Palliative Medicine (Internal Medicine)</li>
+              <li>Palliative Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Hospitalist</summary>
+            <ul>
+              <li>Hospitalist</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Infectious Disease</summary>
+            <ul>
+              <li>Infectious Disease</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Internal Medicine, General</summary>
+            <ul>
+              <li>Internal Medicine</li>
+              <li>Internal Medicine – Family Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Nephrology</summary>
+            <ul>
+              <li>Nephrology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Neurological Surgery</summary>
+            <ul>
+              <li>Neurological Surgery</li>
+              <li>Endovascular Surgical Neuroradiology (Neurological Surgery)</li>
+              <li>Endovascular Surgical Neuroradiology (Neurology)</li>
+              <li>Endovascular Surgical Neuroradiology (Radiology)</li>
+              <li>Spinal Cord Injury Medicine</li>
+              <li>Neurological Critical Care</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Neurology</summary>
+            <ul>
+              <li>Neurology</li>
+              <li>Brain Injury Medicine (Neurology)</li>
+              <li>Brain Injury Medicine (Physical Medicine &amp; Rehabilitation)</li>
+              <li>Clinical Neurophysiology</li>
+              <li>Epilepsy</li>
+              <li>Internal Medicine - Neurology</li>
+              <li>Movement Disorders</li>
+              <li>Neurodevelopmental Disabilities (Psychiatry &amp; Neurology)</li>
+              <li>Neurology (Physical Medicine and Rehabilitation)</li>
+              <li>Neurology/Nuclear Medicine</li>
+              <li>Neurology/Physical Medicine &amp; Rehabilitation</li>
+              <li>Neuromuscular Medicine (Neurology)</li>
+              <li>Neuromuscular Medicine (Physical Medicine &amp; Rehabilitation)</li>
+              <li>Spinal Cord Injury/ Physical Medicine and Rehab</li>
+              <li>Electrodiagnostics</li>
+              <li>Neuropathology</li>
+              <li>Neuropsychiatry</li>
+              <li>Psychiatry - Neurology</li>
+              <li>Vascular Neurology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Obstetrics &amp; Gynecology, General</summary>
+            <ul>
+              <li>Obstetrics and Gynecology</li>
+              <li>Gynecology</li>
+              <li>Obstetrics</li>
+              <li>Medicine-OBGYN</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Obstetrics &amp; Gynecology, Specialty</summary>
+            <ul>
+              <li>Critical Care Medicine (OBGYN)</li>
+              <li>Female Pelvic Medicine &amp; Reconstructive Surgery (OBGYN)*</li>
+              <li>Female Pelvic Medicine &amp; Reconstructive Surgery (Urology)*</li>
+              <li>Gynecological Oncology</li>
+              <li>Maternal and Fetal Medicine</li>
+              <li>Reproductive Endocrinology and Infertility</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Ophthalmology</summary>
+            <ul>
+              <li>Ophthalmology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Oral and Maxillofacial Surgery</summary>
+            <ul>
+              <li>Oral and Maxillofacial Surgery</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Orthopedic Surgery</summary>
+            <ul>
+              <li>Orthopedic Surgery</li>
+              <li>Adult Reconstructive Orthopedics</li>
+              <li>Foot and Ankle Orthopedics</li>
+              <li>Musculoskeletal Oncology</li>
+              <li>Orthopedic Trauma</li>
+              <li>Orthopedic Surgery Of The Spine</li>
+              <li>Sports Medicine (Orthopedic Surgery)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Other Specialty</summary>
+            <ul>
+              <li>Other Specialty</li>
+              <li>Bariatric Medicine</li>
+              <li>Clinical Pharmacology</li>
+              <li>Global Health</li>
+              <li>Integrative Medicine</li>
+              <li>Pharmaceutical Medicine</li>
+              <li>Student Health</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Otolaryngology</summary>
+            <ul>
+              <li>Otolaryngology</li>
+              <li>Head and Neck Surgery</li>
+              <li>Neurotology (Otolaryngology)</li>
+              <li>Otoneurotology</li>
+              <li>Otology</li>
+              <li>Otorhinolaryngology</li>
+              <li>Rhinology</li>
+              <li>Laryngology</li>
+              <li>Bronchoesophagology</li>
+              <li>Plastic Surgery Within The Head &amp; Neck (Otolaryngology)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pain Medicine</summary>
+            <ul>
+              <li>Pain Medicine</li>
+              <li>Pain Management</li>
+              <li>Pain Medicine (Anesthesiology)</li>
+              <li>Pain Medicine (Neurology)</li>
+              <li>Pain Medicine (Physical Medicine &amp; Rehabilitation)</li>
+              <li>Pain Medicine (Psychiatry)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pathology</summary>
+            <ul>
+              <li>Anatomic/Clinical Pathology</li>
+              <li>Anatomic Pathology</li>
+              <li>Laboratory Medicine</li>
+              <li>Blood Banking/Transfusion Medicine</li>
+              <li>Chemical Pathology</li>
+              <li>Clinical Biochemical Genetics</li>
+              <li>Clinical Cytogenetics</li>
+              <li>Clinical Genetics</li>
+              <li>Clinical Informatics (Pathology)</li>
+              <li>Clinical Molecular Genetics</li>
+              <li>Clinical Pathology</li>
+              <li>Cytopathology</li>
+              <li>Dermatopathology (Pathology)</li>
+              <li>Forensic Pathology</li>
+              <li>Internal Medicine-Medical Genetics</li>
+              <li>Medical Biochemical Genetics</li>
+              <li>Medical Genetics</li>
+              <li>Medical Microbiology</li>
+              <li>Molecular Genetic Pathology (Medical Genetics)</li>
+              <li>Molecular Genetic Pathology (Pathology)</li>
+              <li>Pediatric Pathology</li>
+              <li>Phlebology</li>
+              <li>Radioisotopic Pathology</li>
+              <li>Selective Pathology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pediatric Non-Surgical Specialties</summary>
+            <ul>
+              <li>Child Abuse Pediatrics</li>
+              <li>Child Neurology</li>
+              <li>Developmental-Behavioral Pediatrics</li>
+              <li>Hospice &amp; Palliative Medicine (Pediatrics)</li>
+              <li>Neonatal-Perinatal Medicine</li>
+              <li>Neurodevelopmental Disabilities (Pediatrics)</li>
+              <li>Pediatric Allergy</li>
+              <li>Pediatric Cardiology</li>
+              <li>Pediatric Critical Care Medicine</li>
+              <li>Pediatric Dermatology</li>
+              <li>Pediatric Emergency Medicine (Emergency Medicine)</li>
+              <li>Pediatric Emergency Medicine (Pediatrics)</li>
+              <li>Pediatric Endocrinology</li>
+              <li>Pediatric Gastroenterology</li>
+              <li>Pediatric Hematology-Oncology</li>
+              <li>Pediatric Infectious Diseases</li>
+              <li>Pediatric Medical Toxicology</li>
+              <li>Pediatric Nephrology</li>
+              <li>Pediatric Pulmonology</li>
+              <li>Pediatric Rehabilitation Medicine</li>
+              <li>Pediatric Rheumatology</li>
+              <li>Pediatrics – Sports Medicine</li>
+              <li>Pediatric Transplant Hepatology</li>
+              <li>Pediatrics - Medical Genetics</li>
+              <li>Pediatrics/ Physical Medicine and Rehabilitation</li>
+              <li>Pediatrics/Dermatology</li>
+              <li>Pediatrics/Emergency Medicine</li>
+              <li>Sleep Medicine (Pediatrics)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pediatric Surgical Specialties</summary>
+            <ul>
+              <li>Pediatric Cardiothoracic Surgery</li>
+              <li>Pediatric Neurological Surgery</li>
+              <li>Pediatric Ophthalmology</li>
+              <li>Pediatric Orthopedics</li>
+              <li>Pediatric Otolaryngology</li>
+              <li>Pediatric Surgery</li>
+              <li>Pediatric Urology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pediatrics, General</summary>
+            <ul>
+              <li>Pediatrics</li>
+              <li>Adolescent Medicine (FM)</li>
+              <li>Adolescent Medicine (IM)</li>
+              <li>Adolescent Medicine (Peds)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Physical Medicine &amp; Rehabilitation</summary>
+            <ul>
+              <li>Physical Medicine &amp; Rehabilitation</li>
+              <li>Physiatry</li>
+              <li>Internal Medicine - Physical Medicine And Rehabilitation</li>
+              <li>Sports Medicine (Physical Medicine &amp; Rehabilitation)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Plastic Surgery</summary>
+            <ul>
+              <li>Plastic Surgery</li>
+              <li>Cosmetic Surgery</li>
+              <li>Craniofacial Surgery</li>
+              <li>Facial Plastic Surgery</li>
+              <li>Hand Surgery</li>
+              <li>Hand Surgery (Orthopedics)</li>
+              <li>Hand Surgery (Surgery)</li>
+              <li>Hand Surgery (Plastic Surgery)</li>
+              <li>Ophthalmic Plastic And Reconstructive Surgery</li>
+              <li>Plastic Surgery - Integrated</li>
+              <li>Plastic Surgery Within The Head &amp; Neck</li>
+              <li>Plastic Surgery Within The Head &amp; Neck (Otolaryngology)</li>
+              <li>Plastic Surgery Within The Head &amp; Neck (Plastic Surgery)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Preventive Medicine</summary>
+            <ul>
+              <li>General Preventive Medicine</li>
+              <li>Aerospace Medicine</li>
+              <li>Clinical Informatics (Preventive Medicine)</li>
+              <li>Epidemiology</li>
+              <li>Family Medicine/Preventive Medicine</li>
+              <li>Internal Medicine/Preventive Medicine</li>
+              <li>Medical Toxicology (Preventive Medicine)</li>
+              <li>Nutrition</li>
+              <li>Occupational Medicine</li>
+              <li>Industrial Medicine</li>
+              <li>Public Health and General Preventive Medicine</li>
+              <li>Undersea &amp; Hyperbaric Medicine (Preventive Medicine)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Psychiatry, Addiction</summary>
+            <ul>
+              <li>Addiction Medicine</li>
+              <li>Addiction Psychiatry</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Psychiatry, Child &amp; Adolescent</summary>
+            <ul>
+              <li>Child &amp; Adolescent Psychiatry</li>
+              <li>Pediatrics - Psychiatry</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Psychiatry, General</summary>
+            <ul>
+              <li>Psychiatry</li>
+              <li>Forensic Psychiatry</li>
+              <li>Geriatric Psychiatry</li>
+              <li>Internal Medicine - Psychiatry</li>
+              <li>Psychiatry - Family Practice</li>
+              <li>Psychoanalysis</li>
+              <li>Psychosomatic Medicine</li>
+              <li>Hypnosis</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Pulmonology</summary>
+            <ul>
+              <li>Pulmonary Disease</li>
+              <li>Pulmonary Critical Care Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Radiology</summary>
+            <ul>
+              <li>Radiology</li>
+              <li>Abdominal Radiology</li>
+              <li>Cardiothoracic Radiology</li>
+              <li>Diagnostic Radiology</li>
+              <li>Body Imaging</li>
+              <li>Diagnostic Ultrasound</li>
+              <li>Diagnostic Roentgenology</li>
+              <li>Internal Medicine/Nuclear Medicine</li>
+              <li>Musculoskeletal Radiology</li>
+              <li>Neuroradiology</li>
+              <li>Neurology/Diagnostic Radiology/Neuroradiology</li>
+              <li>Nuclear Cardiology</li>
+              <li>Nuclear Medicine</li>
+              <li>Nuclear Radiology</li>
+              <li>Pediatric Radiology</li>
+              <li>Radiation Oncology</li>
+              <li>Radiological Physics</li>
+              <li>Therapeutic Radiology</li>
+              <li>Vascular &amp; Interventional Radiology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Rheumatology</summary>
+            <ul>
+              <li>Rheumatology</li>
+              <li>Rheumatology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Sleep Medicine</summary>
+            <ul>
+              <li>Sleep Medicine</li>
+              <li>Sleep Medicine (Anesthesiology)</li>
+              <li>Sleep Medicine (Internal Medicine)</li>
+              <li>Sleep Medicine (Otolaryngology)</li>
+              <li>Sleep Medicine (Psychiatry &amp; Neurology)</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Sports Medicine</summary>
+            <ul>
+              <li>Sports Medicine (FM)</li>
+              <li>Internal Medicine – Sports Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Surgical Oncology</summary>
+            <ul>
+              <li>Surgical Oncology</li>
+              <li>Advanced Surgical Oncology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Thoracic Surgery</summary>
+            <ul>
+              <li>Thoracic Surgery</li>
+              <li>Congenital Cardiac Surgery (Thoracic Surgery)</li>
+              <li>Thoracic and Cardiac Surgery</li>
+              <li>Cardiovascular Surgery</li>
+              <li>Thoracic Surgery - Integrated</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Urgent Care Medicine</summary>
+            <ul>
+              <li>Urgent Care Medicine</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Urology</summary>
+            <ul>
+              <li>Urology</li>
+              <li>Urological Surgery</li>
+              <li>Endourology</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Vascular Surgery</summary>
+            <ul>
+              <li>Vascular Surgery</li>
+              <li>Vascular Surgery - Integrated</li>
+            </ul>
+          </details>
+        </div>
+      </details>
+    </details>
+    <script src='/js/app.js'></script>
+
+
+  </div>
+
+
+  <div class="footer">
+    <div class="logo">
+      <img src="sheps_logo_blue_horizontal.svg" />
+    </div>
+    <div class="contact">
+      <!-- Email -->
+      <div class="sharing">
+        Email us:
+        <a href="mailto:hpds_online@unc.edu?subject=Question%20about%20the%20North%20Carolina%20Health%20Workforce%20website" target="_self"
+          aria-label="Email Us.">
+          hpds_online@unc.edu
+        </a>
+      </div>
+      <!-- Twitter -->
+      <div class="sharing">
+        <a href="https://twitter.com/intent/tweet/?text=Check%20out%20the%20North%20Carolina%20Health%20Workforce%20website.&amp;url=https%3A%2F%2Fgo.unc.edu%2Fhpds"
+          target="_blank" aria-label="Share on Twitter">
+          Share on Twitter
+        </a>
+      </div>
+
+      <!-- Facebook -->
+      <div class="sharing">
+        <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgo.unc.edu%2Fhpds" target="_blank" aria-label="Share on Facebook">
+          Share on Facebook
+        </a>
+      </div>
+      <!-- LinkedIn -->
+      <div class="sharing">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fgo.unc.edu%2Fhpds&amp;title=Check%20out%20the%20North%20Carolina%20Health%20Workforce%20website.&amp;summary=Check%20out%20the%20North%20Carolina%20Health%20Workforce%20website.&amp;source=https%3A%2F%2Fgo.unc.edu%2Fhpds"
+          target="_blank" aria-label="Share on LinkedIn">
+          Share on LinkedIn
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function navbarRespond() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>
+
+</body>
+
 </html>
