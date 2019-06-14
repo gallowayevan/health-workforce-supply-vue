@@ -1,27 +1,36 @@
  <template>
- <g>      
-<g v-for="item in mapDataArray" :key="item[0]" :transform="`translate(0,${yScale(item[0])})`">
-<rect 
-        :width="xScale(+item[1])"
-        :height="yScale.bandwidth()"
-        :fill="colorScale(+item[1])" 
-        ><title>{{hoverValueText(+item[1])}}</title>
-</rect> 
-<text class="ahecLabel" dx=-10 dy=1em>{{item[0] == "Wake AHEC" ? "Wake" : item[0]}}</text>
-</g>
-<g class="xAxis" v-for="(item, index) in xTicks" :transform="`translate(${xScale(item)},${height-5})`">
-            <line   :y1="-height + 20"></line>
-            <text dy=1.1em v-if="index % 2== 0">{{axisValueFormatter(item)}}</text>
-        </g> 
+  <g>
+    <g v-for="item in mapDataArray" :key="item[0]" :transform="`translate(0,${yScale(item[0])})`">
+      <rect :width="xScale(+item[1])" :height="yScale.bandwidth()" :fill="colorScale(+item[1])">
+        <title>{{hoverValueText(+item[1])}}</title>
+      </rect>
+      <text
+        class="ahecLabel"
+        dx="-10"
+        :dy="yScale.bandwidth()/1.5"
+      >{{item[0] == "Wake AHEC" ? "Wake" : item[0]}}</text>
+    </g>
+    <g
+      class="xAxis"
+      v-for="(item, index) in xTicks"
+      :transform="`translate(${xScale(item)},${height-5})`"
+    >
+      <line :y1="-height + 20"></line>
+      <text dy="1.1em" v-if="index % 2== 0">{{axisValueFormatter(item)}}</text>
+    </g>
 
-        <text class="chartTitle" :x="chartMargin.left + (xScale.range()[1] - xScale.range()[0])/2" :dy="height + 40">{{chartTitle}}</text> 
+    <text
+      class="chartTitle"
+      :x="chartMargin.left + (xScale.range()[1] - xScale.range()[0])/2"
+      :dy="height + 40"
+    >{{chartTitle}}</text>
 
-        <g class="ncLine">
-  <line :x2="xScale(ncData.value)" :x1="xScale(ncData.value)" y1=5 :y2="height - 5"></line>
-  <text :x="xScale(ncData.value)">{{ncText}}</text>
-  </g>  
-</g>
- </template>
+    <g class="ncLine">
+      <line :x2="xScale(ncData.value)" :x1="xScale(ncData.value)" y1="5" :y2="height - 5"></line>
+      <text :x="xScale(ncData.value)">{{ncText}}</text>
+    </g>
+  </g>
+</template>
 
  <script>
 import { extent, range, max } from "d3-array";
@@ -63,10 +72,10 @@ export default {
         .domain(this.mapDataArray.map(d => d[0]))
         .range([this.height - this.chartMargin.bottom, this.chartMargin.top])
         .paddingInner(0.1);
-    },    
+    },
     hoverValueText() {
       let variableText = "";
-       switch (this.variable) {
+      switch (this.variable) {
         case "providerRate":
           variableText = "per 10,000 population";
           break;
@@ -85,9 +94,10 @@ export default {
       }
 
       return function(valueToFormat) {
-      const formattedValue = this.valueFormatter(valueToFormat);
-      return `${formattedValue} ${variableText}`;
-      }},
+        const formattedValue = this.valueFormatter(valueToFormat);
+        return `${formattedValue} ${variableText}`;
+      };
+    },
     chartTitle() {
       let currentChartTitle = "Histogram";
       switch (this.variable) {
@@ -114,7 +124,9 @@ export default {
       txt =
         this.variable == "providerRate"
           ? txt + "Rate"
-          : this.variable == "total" ? "Median" : txt + "Percentage";
+          : this.variable == "total"
+          ? "Median"
+          : txt + "Percentage";
 
       return `${txt}: ${this.valueFormatter(this.ncData.value)}`;
     },

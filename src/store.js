@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { csv } from 'd3-request'
 import { format } from 'd3-format'
-import { median, range} from 'd3-array'
+import { median, range } from 'd3-array'
 import env from './env'
 
 
@@ -29,8 +29,9 @@ export const store = new Vuex.Store({
         hoveredRegion: "",
         yearExtent: [2000, 2017],
         medianCountyData: [],
-        medianAhecData: [], 
-        dataLoaded : false,
+        medianAhecData: [],
+        medianMedicaidData: [],
+        dataLoaded: false,
         freezeScale: false,
         scaleYear: 2017
     },
@@ -75,16 +76,19 @@ export const store = new Vuex.Store({
         changeYearExtent(state, newExtent) {
             state.yearExtent = newExtent;
         },
-        changeAggregation(state) {
-            state.region = "North Carolina"
-            const aggReverse = state.aggregationLevel == "county" ? "ahec" : "county";
-            state.aggregationLevel = aggReverse;
+        changeAggregation(state, newRegion) {
+            state.region = "North Carolina";
+            state.aggregationLevel = newRegion;
+            updateVariables(state);
         },
         changeCountyMedians(state, data) {
             state.medianCountyData = data;
         },
         changeAHECMedians(state, data) {
             state.medianAhecData = data;
+        },
+        changeMedicaidMedians(state, data) {
+            state.medianMedicaidData = data;
         },
         // changeWindowResize(state) {
         //     state.windowResize++;
@@ -102,8 +106,10 @@ export const store = new Vuex.Store({
                 return state.data.filter(d => d.region == "North Carolina").map(d => { return { year: d.year, value: d[variable] } })
             } else if (state.aggregationLevel == "county") {
                 return state.medianCountyData;
-            } else {
+            } else if (state.aggregationLevel == "ahec") {
                 return state.medianAhecData;
+            } else {
+                return state.medianMedicaidData;
             }
         }
         // getDataByCurrentVariableForCurrentRegionTypeCurrentYear: (state) => {
@@ -151,8 +157,14 @@ export const store = new Vuex.Store({
                         return { year: d, value: currMedian }
                     });
 
+                    const medicaidMedians = yearRange.map(function (d) {
+                        const currMedian = median(data, e => e.year == d && e.type == "medicaid" ? e.total : NaN)
+                        return { year: d, value: currMedian }
+                    });
+
                     commit('changeCountyMedians', countyMedians);
                     commit('changeAHECMedians', ahecMedians);
+                    commit('changeMedicaidMedians', medicaidMedians);
                     commit('changeData', data);
                     commit('changeYear', yearMax);
                     commit('changeScaleYear', yearMax);
