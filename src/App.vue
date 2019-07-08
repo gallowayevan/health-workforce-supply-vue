@@ -6,8 +6,15 @@
       Please try selecting another profession or try the same profession again.
       If the problem persists, contact us at
       <a
-        href="mailto:hpds_online@unc.edu?subject=Problem%20with%20HPDS%20website"
-      >hpds_online@unc.edu</a>.
+        href="mailto:nchealthworkforce@unc.edu?subject=Problem%20with%20HPDS%20website"
+      >nchealthworkforce@unc.edu</a>.
+    </div>
+    <div v-else-if="!medicaidRegions & aggregationLevel == 'medicaid'" class="failed">
+      We do not have data for medicaid regions for this profession. Please select another choice.
+      If the problem persists, contact us at
+      <a
+        href="mailto:nchealthworkforce@unc.edu?subject=Problem%20with%20HPDS%20website"
+      >nchealthworkforce@unc.edu</a>.
     </div>
     <div v-else>
       <div
@@ -53,7 +60,7 @@
         <select id="region-select" :value="aggregationLevel" @change="changeAggregation">
           <option value="county">County</option>
           <option value="ahec">AHEC</option>
-          <option value="medicaid">Medicaid Region</option>
+          <option value="medicaid" :disabled="!medicaidRegions">Medicaid Region</option>
         </select>
       </div>
       <download-image-button></download-image-button>
@@ -132,6 +139,9 @@ export default {
     },
     dataLoaded() {
       return this.$store.state.dataLoaded;
+    },
+    medicaidRegions() {
+      return this.$store.state.medicaidRegions;
     },
     aggregationLevel() {
       return this.$store.state.aggregationLevel;

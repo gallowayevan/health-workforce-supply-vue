@@ -148,7 +148,7 @@ export default {
       return wrap({ text: title, maxCharsPerLine: 85 });
     },
     mapData() {
-      return new Map(
+      const mapDataMap = new Map(
         this.data
           .filter(d => d.year == this.year && d.type == this.aggregationLevel)
           .map(d => {
@@ -159,6 +159,8 @@ export default {
             return [d.region, d[this.variable]];
           })
       );
+
+      return mapDataMap;
     },
     totalMap() {
       return new Map(

@@ -33,7 +33,9 @@ export const store = new Vuex.Store({
         medianMedicaidData: [],
         dataLoaded: false,
         freezeScale: false,
-        scaleYear: 2017
+        scaleYear: 2017,
+        medicaidRegions: false,
+        dataAvailable: true
     },
     mutations: {
         changeData(state, data) {
@@ -129,10 +131,14 @@ export const store = new Vuex.Store({
                     let yearMin = 4000;
                     let yearMax = 0;
 
+                    let medicaidRegions = false;
+
                     data.forEach(function (d) {
                         d.total = +d.total;
                         d.year = +d.year;
                         d.providerRate = +d.providerRate;
+
+                        if (d.type == "medicaid") medicaidRegions = true;
 
                         //calculate extent of years available
                         yearMax = d.year > yearMax ? d.year : yearMax;
@@ -161,6 +167,8 @@ export const store = new Vuex.Store({
                         const currMedian = median(data, e => e.year == d && e.type == "medicaid" ? e.total : NaN)
                         return { year: d, value: currMedian }
                     });
+
+                    state.medicaidRegions = medicaidRegions;
 
                     commit('changeCountyMedians', countyMedians);
                     commit('changeAHECMedians', ahecMedians);
