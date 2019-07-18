@@ -48,7 +48,7 @@
         @click="clicked(item.properties.medicaid)"
       >
         <title
-          v-html="`${item.properties.medicaid}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `providerRate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
+          v-html="`${getMedicaidRegionName(item.properties.medicaid)}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `providerRate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
         ></title>
       </path>
     </g>
@@ -60,7 +60,7 @@
       :mapData="mapData"
       v-if="aggregationLevel=='county'"
     ></histogram-legend>
-    <row-chart v-else transform="translate(140,325)" :colorScale="colorScale" :mapData="mapData"></row-chart>
+    <row-chart v-else transform="translate(215,325)" :colorScale="colorScale" :mapData="mapData"></row-chart>
   </g>
 </template>
 
@@ -70,7 +70,7 @@ import { extent, histogram, ticks, max } from "d3-array";
 import { scaleThreshold, scaleQuantile } from "d3-scale";
 // import { interpolateViridis } from "d3-scale-chromatic";
 import { schemeYlGn } from "d3-scale-chromatic";
-import { formatter, wrap } from "../utility";
+import { formatter, wrap, medicaidRegionName } from "../utility";
 import mapGeojson from "../assets/data/ncMap";
 import ahecGeojson from "../assets/data/ahec";
 import medicaidGeojson from "../assets/data/medicaid";
@@ -319,6 +319,9 @@ export default {
   methods: {
     clicked: function(region) {
       this.$store.commit("changeRegion", region);
+    },
+    getMedicaidRegionName: function(numericRegionName) {
+      return medicaidRegionName.get(numericRegionName);
     }
   }
 };

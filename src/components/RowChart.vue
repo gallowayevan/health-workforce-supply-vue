@@ -8,7 +8,7 @@
         class="ahecLabel"
         dx="-10"
         :dy="yScale.bandwidth()/1.5"
-      >{{item[0] == "Wake AHEC" ? "Wake" : item[0]}}</text>
+      >{{item[0] == "Wake AHEC" ? "Wake" : aggregationLevel == "medicaid" ? getMedicaidRegionName(item[0]) : item[0]}}</text>
     </g>
     <g
       class="xAxis"
@@ -36,7 +36,7 @@
 import { extent, range, max } from "d3-array";
 import { scaleLinear, scaleBand } from "d3-scale";
 import { format } from "d3-format";
-import { formatter } from "../utility";
+import { formatter, medicaidRegionName } from "../utility";
 
 export default {
   name: "RowChart",
@@ -152,6 +152,9 @@ export default {
         formatted = this.valueFormatter(currValue);
       }
       return formatted;
+    },
+    getMedicaidRegionName: function(numericRegionName) {
+      return medicaidRegionName.get(numericRegionName);
     }
   }
 };

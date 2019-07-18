@@ -11,10 +11,6 @@
     </div>
     <div v-else-if="!medicaidRegions & aggregationLevel == 'medicaid'" class="failed">
       We do not have data for medicaid regions for this profession. Please select another choice.
-      If the problem persists, contact us at
-      <a
-        href="mailto:nchealthworkforce@unc.edu?subject=Problem%20with%20HPDS%20website"
-      >nchealthworkforce@unc.edu</a>.
     </div>
     <div v-else>
       <div

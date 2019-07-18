@@ -1,21 +1,21 @@
-import {format} from 'd3-format'
+import { format } from 'd3-format'
 
 const formatters = {
     rate: format(".3r"),
     percent: format(".1%"),
-    total: format(",.0f")  
+    total: format(",.0f")
 }
 
-export function formatter(type){
+export function formatter(type) {
     let currentType = "percent";
 
     if (type == "providerRate") {
         currentType = "rate"
-    } else if(type == "total") {
+    } else if (type == "total") {
         currentType = "total"
-    }                        
+    }
 
-    return function(value) {return value == -9 ? "NA" : formatters[currentType](value)};
+    return function (value) { return value == -9 ? "NA" : formatters[currentType](value) };
 }
 
 export function sortStrings(a, b) {
@@ -30,43 +30,44 @@ export function sortStrings(a, b) {
 
     // names must be equal
     return 0;
-    }
+}
 
-export function wrap(config = {}){
+export function wrap(config = {}) {
 
-        let {text, maxCharsPerLine = 65, 
-             lineHeight = 1.3} = config;
-      
-        if (typeof config == "string") text = config;
-      
-        let words = text.trim().split(/\s+/).reverse(),
-        word, 
-        x=0,
-        dy = 0, 
+    let { text, maxCharsPerLine = 65,
+        lineHeight = 1.3 } = config;
+
+    if (typeof config == "string") text = config;
+
+    let words = text.trim().split(/\s+/).reverse(),
+        word,
+        x = 0,
+        dy = 0,
         lineNumber = 0,
         line = [],
         allTogether = ``;
-      
-        while(word = words.pop()) {
-      
-          line.push(word);
-          let testLineLength = line.join(" ").length;
-      
-          if (testLineLength > maxCharsPerLine){
+
+    while (word = words.pop()) {
+
+        line.push(word);
+        let testLineLength = line.join(" ").length;
+
+        if (testLineLength > maxCharsPerLine) {
             line.pop();
-            
+
             let tspan = `<tspan x=${x} dy=${dy}em>${line.join(" ")}</tspan>`;
-            
+
             allTogether = `${allTogether}${tspan}`;
-      
+
             line = [word];
             dy = lineHeight;
-          }
         }
-        
-        let tspan = `<tspan x=${x} dy=${dy}em>${line.join(" ")}</tspan>`;        
-        allTogether = `${allTogether}${tspan}`;
-      
-        return allTogether;
-      }
-    
+    }
+
+    let tspan = `<tspan x=${x} dy=${dy}em>${line.join(" ")}</tspan>`;
+    allTogether = `${allTogether}${tspan}`;
+
+    return allTogether;
+}
+
+export const medicaidRegionName = new Map([["Medicaid Region 1", "Western NC (1)"], ["Medicaid Region 2", "Northwest / Triad (2)"], ["Medicaid Region 3", "Southcentral / Charlotte (3)"], ["Medicaid Region 4", "Piedmont / Triangle (4)"], ["Medicaid Region 5", "Southeast / Wilmington (5)"], ["Medicaid Region 6", "Eastern NC (6)"]]);
