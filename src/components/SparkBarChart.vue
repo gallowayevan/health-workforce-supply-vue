@@ -89,7 +89,7 @@ export default {
         .domain(xDomain)
         .range([0, this.chartWidth])
         .padding(0.1);
-      const xBandwidth = xScale.bandwidth();
+      const xBandwidth = Math.min(xScale.bandwidth(), 50)
       const xLinear = scaleLinear()
         .domain(xExtent)
         .range([0, this.chartWidth]); //for making ncLine

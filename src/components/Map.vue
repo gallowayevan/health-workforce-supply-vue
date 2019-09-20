@@ -69,7 +69,7 @@ import { geoAlbers, rotate, fitSize, geoPath } from "d3-geo";
 import { extent, histogram, ticks, max } from "d3-array";
 import { scaleThreshold, scaleQuantile } from "d3-scale";
 // import { interpolateViridis } from "d3-scale-chromatic";
-import { schemeYlGn } from "d3-scale-chromatic";
+import { schemeYlGn, schemePastel2 } from "d3-scale-chromatic";
 import { formatter, wrap, medicaidRegionName } from "../utility";
 import mapGeojson from "../assets/data/ncMap";
 import ahecGeojson from "../assets/data/ahec";

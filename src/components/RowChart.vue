@@ -58,9 +58,9 @@ export default {
         .filter(d => d.year == this.$store.state.year)[0];
     },
     xScale: function() {
-      const currDomain = this.mapDataArray.map(d => d[1]);
+      //const currDomain = this.mapDataArray.map(d => d[1]);
       return scaleLinear()
-        .domain([0, Math.max(...currDomain)])
+        .domain([0, this.maxAllTime]) //Math.max(...currDomain)])
         .nice()
         .range([this.chartMargin.left, this.width - this.chartMargin.right]);
     },
@@ -130,7 +130,18 @@ export default {
 
       return `${txt}: ${this.valueFormatter(this.ncData.value)}`;
     },
-
+    maxAllTime() {
+      return max(
+        this.data
+          .filter(
+            d =>
+              d.type == this.aggregationLevel &&
+              d[this.variable] > 0 &&
+              d[this.variable] != "NA"
+          )
+          .map(d => d[this.variable])
+      );
+    },
     valueFormatter: function() {
       return formatter(this.variable);
     },
@@ -139,6 +150,9 @@ export default {
     },
     aggregationLevel: function() {
       return this.$store.state.aggregationLevel;
+    },
+    data: function() {
+      return this.$store.state.data;
     }
   },
   methods: {
