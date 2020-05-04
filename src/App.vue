@@ -9,9 +9,10 @@
         href="mailto:nchealthworkforce@unc.edu?subject=Problem%20with%20HPDS%20website"
       >nchealthworkforce@unc.edu</a>.
     </div>
-    <div v-else-if="!medicaidRegions & aggregationLevel == 'medicaid'" class="failed">
-      We do not have data for medicaid regions for this profession. Please select another choice.
-    </div>
+    <div
+      v-else-if="!medicaidRegions & aggregationLevel == 'medicaid'"
+      class="failed"
+    >We do not have data for medicaid regions for this profession. Please select another choice.</div>
     <div v-else>
       <div
         v-if="dataLoaded"
@@ -28,12 +29,12 @@
                 y="0"
                 width="8"
                 height="8"
-              ></image>
+              />
             </pattern>
           </defs>
-          <rect width="960" height="600" fill="#fff" @click="rectClicked"></rect>
-          <Map></Map>
-          <spark-bar-chart-group></spark-bar-chart-group>
+          <rect width="960" height="600" fill="#fff" @click="rectClicked" />
+          <Map />
+          <spark-bar-chart-group />
         </svg>
       </div>
     </div>
@@ -48,7 +49,7 @@
           :value="year"
           @input="updateYear"
           type="range"
-        >
+        />
         <!-- <label for="scaleCheckBox"><input id="scaleCheckBox" type="checkbox" :value="$store.state.freezeScale" @input="$store.commit('changeFreezeScale')">Freeze Color Scale</label> -->
       </div>
       <div id="region-select-group">
@@ -64,6 +65,7 @@
       <!-- <button type="button" class="aggregate" id="aggregate" @click="changeAggregation">{{aggregationText}}</button> -->
       <button type="button" @click="runTutorial">Tutorial</button>
     </div>
+    <layer-select></layer-select>
 
     <div class="notes">
       <p class="notes-text" v-html="noteText"></p>
@@ -76,6 +78,7 @@
 <script>
 import SparkBarChartGroup from "./components/SparkBarChartGroup";
 import SpecialtySelect from "./components/SpecialtySelect";
+import LayerSelect from "./components/LayerSelect";
 import DownloadImageButton from "./components/DownloadImageButton";
 import DownloadDataButton from "./components/DownloadDataButton";
 import Map from "./components/Map";
@@ -88,6 +91,7 @@ export default {
     SparkBarChartGroup,
     Map,
     SpecialtySelect,
+    LayerSelect,
     DownloadImageButton,
     DownloadDataButton
   },

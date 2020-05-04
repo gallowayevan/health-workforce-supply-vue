@@ -1,0 +1,47 @@
+<template>
+  <div class="layer-select">
+    <label>Add a Layer</label>
+    <multiselect
+      :value="layers"
+      :options="options"
+      track-by="value"
+      label="label"
+      placeholder="Add a Layer"
+      @input="updateLayers"
+      :multiple="true"
+      :searchable="false"
+    ></multiselect>
+  </div>
+</template>
+
+<script>
+import Multiselect from "vue-multiselect";
+
+export default {
+  name: "LayerSelect",
+  components: {
+    Multiselect
+  },
+  data() {
+    return {
+      options: [
+        { value: 0, label: "Rural" },
+        { value: 1, label: "Interstates" },
+        { value: 5, label: "Rural Circles" }
+      ]
+    };
+  },
+  computed: {
+    layers: function() {
+      return this.$store.state.layers;
+    }
+  },
+  methods: {
+    updateLayers: function(layers) {
+      this.$store.commit("updateLayers", layers);
+    }
+  }
+};
+</script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

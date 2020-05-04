@@ -35,7 +35,8 @@ export const store = new Vuex.Store({
         freezeScale: false,
         scaleYear: 2017,
         medicaidRegions: false,
-        dataAvailable: true
+        dataAvailable: true,
+        layers: []
     },
     mutations: {
         changeData(state, data) {
@@ -97,6 +98,9 @@ export const store = new Vuex.Store({
         // },
         changeFreezeScale(state) {
             state.freezeScale = state.freezeScale ? false : true;
+        },
+        updateLayers(state, layers) {
+            state.layers = layers;
         }
     },
     getters: {
@@ -149,6 +153,12 @@ export const store = new Vuex.Store({
                         });
                     });
 
+                    //Filter out physician and PA specialty data before 2013
+                    //Should eventually just filter out of base data
+                    if ((state.specialty.profession == "Physician" || state.specialty.profession == "Physician Assistant")
+                        && state.specialty.profession != state.specialty.specialty) {
+                        data = data.filter(e => e.year >= 2013);
+                    }
 
                     //calculate medians for each year for total spark charts
                     const yearRange = range(yearMin, yearMax + 1);

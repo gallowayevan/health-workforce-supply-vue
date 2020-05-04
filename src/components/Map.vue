@@ -52,6 +52,9 @@
         ></title>
       </path>
     </g>
+    <g class="layers" :transform="`translate(${chartMargin.left}, ${chartMargin.top})`">
+      <layers :projection="projection"></layers>
+    </g>
     <histogram-legend
       class="histogram-legend"
       transform="translate(40,325)"
@@ -78,6 +81,7 @@ import { professionChartTitle } from "../chart-text";
 // import BeeswarmChart from './BeeswarmChart';
 import HistogramLegend from "./HistogramLegend";
 import RowChart from "./RowChart";
+import Layers from "./Layers";
 import { mapState } from "vuex";
 import scaleCluster from "d3-scale-cluster";
 
@@ -95,7 +99,7 @@ export default {
       mapHoverOrigin: false
     };
   },
-  components: { HistogramLegend, RowChart },
+  components: { HistogramLegend, RowChart, Layers },
   computed: {
     height() {
       return this.width * 0.6;
@@ -174,17 +178,18 @@ export default {
     viewBox: function() {
       return `0 0 ${this.width} ${this.height}`;
     },
-    generatePath: function() {
+    projection() {
       const chartWidth =
         this.width - this.chartMargin.left - this.chartMargin.right;
       const chartHeight =
         this.height - this.chartMargin.top - this.chartMargin.bottom;
 
-      const projection = geoAlbers()
+      return geoAlbers()
         .rotate([0, 62, 0])
         .fitSize([chartWidth, chartHeight], mapGeojson);
-
-      return geoPath(projection);
+    },
+    generatePath: function() {
+      return geoPath(this.projection);
     },
     currentDomainAllTime() {
       return this.data
