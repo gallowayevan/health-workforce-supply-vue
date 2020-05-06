@@ -1,6 +1,11 @@
  <template>
-        <button type="button" class="save-image" id="save-image" @click="downloadImage">Download as Image</button>
- </template>
+  <button class="button-icon" title="Save Image" @click="downloadImage">
+    <svg class="button-icon-svg has-fill-primary">
+      <use xlink:href="#fa-image" />
+    </svg>
+  </button>
+  <!-- <button type="button" class="save-image" id="save-image" @click="downloadImage">Download as Image</button> -->
+</template>
 
  <script>
 import { saveSvgAsPng } from "save-svg-as-png";
@@ -34,29 +39,29 @@ export default {
       newText.setAttributeNS(null, "transform", "translate(270,660)");
 
       const notes = document.querySelector(".notes-text").innerText;
-      newText.innerHTML = wrap({text: notes, maxCharsPerLine: 155})
+      newText.innerHTML = wrap({ text: notes, maxCharsPerLine: 155 });
       dashboard.appendChild(newText);
 
-      svg('sheps_workforce_nc_for_web.svg')
-      .then(function(d){
-        const defs = d.childNodes[0].childNodes[0];
-        dashboard.appendChild(defs);
-        const logoSvg = d.childNodes[0].childNodes[1];
-        logoSvg.setAttribute("transform", `translate(15,655), scale(0.4)`);
-        dashboard.appendChild(logoSvg);
+      svg("sheps_workforce_nc_for_web.svg")
+        .then(function(d) {
+          const defs = d.childNodes[0].childNodes[0];
+          dashboard.appendChild(defs);
+          const logoSvg = d.childNodes[0].childNodes[1];
+          logoSvg.setAttribute("transform", `translate(15,655), scale(0.4)`);
+          dashboard.appendChild(logoSvg);
 
-        saveSvgAsPng(dashboard, "viz.png", { backgroundColor: "#fff", encoderOptions: 1});
-      })
-      .catch(function(error) {
-  console.log('Looks like there was a problem: \n', error);
-});
-
-           
+          saveSvgAsPng(dashboard, "viz.png", {
+            backgroundColor: "#fff",
+            encoderOptions: 1
+          });
+        })
+        .catch(function(error) {
+          console.log("Looks like there was a problem: \n", error);
+        });
     }
   }
 };
 </script>
 
-<style >
-</style>
+
  

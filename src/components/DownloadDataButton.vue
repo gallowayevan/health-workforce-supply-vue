@@ -1,5 +1,10 @@
  <template>
-  <button type="button" class="save-data" @click="downloadData">Download Data</button>
+  <button class="button-icon" title="Download Data" @click="downloadData">
+    <svg class="button-icon-svg has-fill-primary">
+      <use xlink:href="#fa-file-csv" />
+    </svg>
+  </button>
+  <!-- <button type="button" class="save-data" @click="downloadData">Download Data</button> -->
 </template>
 
  <script>
@@ -37,7 +42,7 @@ export default {
 
       notesText = brokenNotesText;
 
-      const yearExtent = extent(this.$store.state.data, d=>d.year)
+      const yearExtent = extent(this.$store.state.data, d => d.year);
       const variable = this.$store.state.variable;
       const aggregationLevel = this.$store.state.aggregationLevel;
       const formattedData = Array.from(
@@ -63,7 +68,10 @@ export default {
         variable == "providerRate" ? "rate per 10k" : variable
       }\n`;
       csv += notesText;
-      csv += csvFormat(formattedData, [aggregationLevel, ...range(yearExtent[0], yearExtent[1] + 1)]);
+      csv += csvFormat(formattedData, [
+        aggregationLevel,
+        ...range(yearExtent[0], yearExtent[1] + 1)
+      ]);
 
       if (navigator.msSaveBlob) {
         // IE 10+

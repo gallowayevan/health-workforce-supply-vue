@@ -11,10 +11,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/css/hpds.css" type="text/css">
+  <style>
+    .button-icon-svg {
+      width: 35px;
+      height: 35px;
+
+    }
+
+    .button-icon-svg:hover {
+      opacity: 0.5
+    }
+
+    .has-fill-primary {
+      fill: #465d80;
+    }
+
+    .button-icon {
+      margin-top: 25px;
+      background-color: white;
+      border-color: #dbdbdb;
+      border-width: 1px;
+      color: #6c7480;
+      cursor: pointer;
+      justify-content: center;
+      padding-bottom: calc(0.375em - 1px);
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+      padding-top: calc(0.375em - 1px);
+      text-align: center;
+      white-space: nowrap;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      box-shadow: none;
+      display: inline-flex;
+      font-size: 1rem;
+      height: 2.25em;
+      justify-content: flex-start;
+      line-height: 1.5;
+      padding-bottom: calc(0.375em - 1px);
+      padding-left: calc(0.625em - 1px);
+      padding-right: calc(0.625em - 1px);
+      padding-top: calc(0.375em - 1px);
+      position: relative;
+      vertical-align: top;
+    }
+
+    .button-icon:hover {
+
+      background-color: #ffffff;
+    }
+  </style>
 
 </head>
 
 <body>
+
 
   <div class="header">
     <h2 class="title">
@@ -29,7 +83,8 @@
         <a href="/about.html">About</a>
       </li> -->
       <li>
-        <a href="http://www.shepscenter.unc.edu/programs-projects/workforce/data-publications-resources/">Publications/Data</a>
+        <a
+          href="http://www.shepscenter.unc.edu/programs-projects/workforce/data-publications-resources/">Publications/Data</a>
       </li>
       <!-- <li>
         <a href="/help">Help</a>
@@ -48,51 +103,67 @@
 
     <details open>
       <summary class="summary-header">About the Health Professions Data System</summary>
-      <p>The North Carolina Health Professions Data System (HPDS) collects and disseminates descriptive data on selected licensed
+      <p>The North Carolina Health Professions Data System (HPDS) collects and disseminates descriptive data on selected
+        licensed
         health professionals in North Carolina. With annual files dating back to 1979, the HPDS is the oldest continuous
         state health workforce data system in the country.</p>
-      <p>The HPDS is maintained by the Program on Health Workforce Research and Policy at the Cecil G. Sheps Center for Health
+      <p>The HPDS is maintained by the Program on Health Workforce Research and Policy at the Cecil G. Sheps Center for
+        Health
         Services Research at the University of North Carolina at Chapel Hill, in collaboration with the
-        <a href="https://www.ncahec.net/">North Carolina Area Health Education Centers Program (AHEC)</a>, and the state’s independent health professional
-        licensing boards. Ongoing financial support is provided by the NC AHEC Program Office and the Office of the Provost
-        at the University of North Carolina at Chapel Hill. Although the NC HPDS maintains the data system, the data remain
+        <a href="https://www.ncahec.net/">North Carolina Area Health Education Centers Program (AHEC)</a>, and the
+        state’s independent health professional
+        licensing boards. Ongoing financial support is provided by the NC AHEC Program Office and the Office of the
+        Provost
+        at the University of North Carolina at Chapel Hill. Although the NC HPDS maintains the data system, the data
+        remain
         the property of their respective licensing board.
       </p>
       <p>
-        Data include active, licensed health professionals practicing in North Carolina as of October 31 of each data year. County
-        counts are based on primary practice location. Some providers may practice in additional locations not shown in primary
+        Data include active, licensed health professionals practicing in North Carolina as of October 31 of each data
+        year. County
+        counts are based on primary practice location. Some providers may practice in additional locations not shown in
+        primary
         practice location counts.
       </p>
     </details>
     <details>
       <summary class="summary-header">Note on Underrepresented Minorities</summary>
-      <p>Underrepresented minorities include health professionals that self-identify as African-American/Black, American Indian
-        or Alaskan Native, and/or Hispanic. Health professionals that self-identify as Asian are not included in this category.
+      <p>Underrepresented minorities include health professionals that self-identify as African-American/Black, American
+        Indian
+        or Alaskan Native, and/or Hispanic. Health professionals that self-identify as Asian are not included in this
+        category.
         Both state
         <sup>1</sup> and national
-        <sup>2</sup> data have shown that compared to the general population, Asians tend to be more represented in many (although
+        <sup>2</sup> data have shown that compared to the general population, Asians tend to be more represented in many
+        (although
         not all) health professions, particularly those requiring a doctoral degree.</p>
       <ol>
-        <li>Spero JC. Does North Carolina’s health care workforce reflect the diversity of the state’s population? NC Med J.
+        <li>Spero JC. Does North Carolina’s health care workforce reflect the diversity of the state’s population? NC
+          Med J.
           2016; 77(2):141-145.</li>
-        <li>U.S. Department of Health and Human Services, Health Resources and Services Administration, National Center for Health
-          Workforce Analysis. Sex, Race, and Ethnic Diversity of U.S. Health Occupations (2010-2012), Rockville, Maryland;
+        <li>U.S. Department of Health and Human Services, Health Resources and Services Administration, National Center
+          for Health
+          Workforce Analysis. Sex, Race, and Ethnic Diversity of U.S. Health Occupations (2010-2012), Rockville,
+          Maryland;
           2015.
         </li>
       </ol>
     </details>
     <details>
-      <summary class="summary-header">HPDS Physician and Physician Assistant Primary Area of Practice Information</summary>
+      <summary class="summary-header">HPDS Physician and Physician Assistant Primary Area of Practice Information
+      </summary>
       <h6>
         <strong>What is a Primary Area of Practice?</strong>
       </h6>
       <p>The NCMB annual licensure/reregistration forms request self-selected primary area of practice, defined as “
-        <em>What you primarily do as a physician</em>.” The forms note that “Primary area of practice may correspond to an ABMS/AOA
+        <em>What you primarily do as a physician</em>.” The forms note that “Primary area of practice may correspond to
+        an ABMS/AOA
         certification or a generally recognized area of work, such as ‘hospitalist’ or ‘administrative medicine.’”</p>
       <h6>
         <strong>Why doesn’t the data visualization tool have Primary Area of Practice data prior to 2011?</strong>
       </h6>
-      <p>The NCMB began to collect data on physician and PA primary area of practice in 2011. Data on primary area of practice
+      <p>The NCMB began to collect data on physician and PA primary area of practice in 2011. Data on primary area of
+        practice
         are not available prior to 2011.</p>
       <h6>
         <strong>How are Primary Areas of Practice grouped in the data visualization tool?</strong>
@@ -100,11 +171,15 @@
       <p>The HPDS area of practice categories used in the data visualization tool group physicians and PAs
         <strong>by what they primarily
           <span style="text-decoration: underline;">do</span>,
-          <em>not</em> by how they trained.</strong> For example, adolescent medicine is categorized as general pediatrics, no
+          <em>not</em> by how they trained.</strong> For example, adolescent medicine is categorized as general
+        pediatrics, no
         matter whether the branch specialty was pediatrics, family medicine, or internal medicine.</p>
-      <p>The “Primary Care Physician” and “Generalist Physician” groups include counts of physicians from multiple areas of
-        practice are not exclusive groups. For example, a physician who selects a primary area of practice of “pediatrics”
-        is included in the Primary Care Physician, Generalist Physician, and General Pediatrics groups. General Pediatrics
+      <p>The “Primary Care Physician” and “Generalist Physician” groups include counts of physicians from multiple areas
+        of
+        practice are not exclusive groups. For example, a physician who selects a primary area of practice of
+        “pediatrics”
+        is included in the Primary Care Physician, Generalist Physician, and General Pediatrics groups. General
+        Pediatrics
         is an exclusive group, meaning that the physician is excluded from all other area of practice groups.</p>
       <details style="margin-left: 1em;">
         <summary style="font-size: 1.2em;">HPDS Primary Area of Practice Categories</summary>
@@ -698,8 +773,8 @@
       <!-- Email -->
       <div class="sharing">
         Email us:
-        <a href="mailto:hpds_online@unc.edu?subject=Question%20about%20the%20North%20Carolina%20Health%20Workforce%20website" target="_self"
-          aria-label="Email Us.">
+        <a href="mailto:hpds_online@unc.edu?subject=Question%20about%20the%20North%20Carolina%20Health%20Workforce%20website"
+          target="_self" aria-label="Email Us.">
           hpds_online@unc.edu
         </a>
       </div>
@@ -713,7 +788,8 @@
 
       <!-- Facebook -->
       <div class="sharing">
-        <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgo.unc.edu%2Fhpds" target="_blank" aria-label="Share on Facebook">
+        <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgo.unc.edu%2Fhpds" target="_blank"
+          aria-label="Share on Facebook">
           Share on Facebook
         </a>
       </div>

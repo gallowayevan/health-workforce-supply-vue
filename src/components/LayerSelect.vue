@@ -10,6 +10,7 @@
       @input="updateLayers"
       :multiple="true"
       :searchable="false"
+      :showLabels="false"
     ></multiselect>
   </div>
 </template>
