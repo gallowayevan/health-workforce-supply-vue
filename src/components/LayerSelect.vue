@@ -28,7 +28,10 @@ export default {
       options: [
         { value: 0, label: "Rural" },
         { value: 1, label: "Interstates" },
-        { value: 5, label: "Rural Circles" }
+        { value: 2, label: "Urbanized Areas" },
+        { value: 5, label: "Rural Triangles" },
+        { value: 6, label: "Rural Diamonds" },
+        { value: 7, label: "Rural Squares" }
       ]
     };
   },
