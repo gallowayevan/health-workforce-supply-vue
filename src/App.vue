@@ -96,13 +96,26 @@
         />
         <!-- <label for="scaleCheckBox"><input id="scaleCheckBox" type="checkbox" :value="$store.state.freezeScale" @input="$store.commit('changeFreezeScale')">Freeze Color Scale</label> -->
       </div>
-      <div id="region-select-group">
+      <!-- <div id="region-select-group">
         <label for="region-select" id="region-select-label">See Data By</label>
         <select id="region-select" :value="aggregationLevel" @change="changeAggregation">
           <option value="county">County</option>
           <option value="ahec">AHEC</option>
           <option value="medicaid" :disabled="!medicaidRegions">Medicaid Region</option>
         </select>
+      </div>-->
+      <div class="layer-select">
+        <label>See Data By</label>
+        <multiselect
+          :value="aggregationSelectValue"
+          :options="aggregationSelect"
+          track-by="value"
+          label="label"
+          @input="changeAggregation"
+          :multiple="false"
+          :searchable="false"
+          :showLabels="false"
+        ></multiselect>
       </div>
       <layer-select></layer-select>
       <download-image-button></download-image-button>
@@ -132,6 +145,7 @@ import DownloadImageButton from "./components/DownloadImageButton";
 import DownloadDataButton from "./components/DownloadDataButton";
 import Map from "./components/Map";
 import { getSourceText, getPhysicianGroupText } from "./chart-text";
+import Multiselect from "vue-multiselect";
 // import debounce from "lodash/debounce";
 
 export default {
@@ -142,10 +156,16 @@ export default {
     SpecialtySelect,
     LayerSelect,
     DownloadImageButton,
-    DownloadDataButton
+    DownloadDataButton,
+    Multiselect
   },
   data: function() {
     return {
+      aggregationSelect: [
+        { value: "county", label: "County" },
+        { value: "ahec", label: "AHEC" },
+        { value: "medicaid", label: "Medicaid Region" }
+      ],
       steps: [
         {
           target: ".profession-select",
@@ -192,6 +212,11 @@ export default {
     medicaidRegions() {
       return this.$store.state.medicaidRegions;
     },
+    aggregationSelectValue() {
+      return this.aggregationSelect.find(
+        ({ value }) => value == this.aggregationLevel
+      );
+    },
     aggregationLevel() {
       return this.$store.state.aggregationLevel;
     },
@@ -222,7 +247,7 @@ export default {
       this.$store.commit("changeRegion", "North Carolina");
     },
     changeAggregation(e) {
-      this.$store.commit("changeAggregation", e.target.value);
+      this.$store.commit("changeAggregation", e.value);
     },
     updateYear(e) {
       this.$store.commit("changeYear", e.target.value);
@@ -242,7 +267,7 @@ export default {
   //   }
 };
 </script>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
 .v-step {
   background: #006837 !important;
