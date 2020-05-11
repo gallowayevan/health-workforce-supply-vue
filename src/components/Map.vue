@@ -52,9 +52,12 @@
         ></title>
       </path>
     </g>
-    <g class="layers" :transform="`translate(${chartMargin.left}, ${chartMargin.top})`">
-      <layers :projection="projection"></layers>
-    </g>
+    <layers
+      class="layers"
+      :transform="`translate(${chartMargin.left}, ${chartMargin.top})`"
+      :projection="projection"
+    />
+    <symbol-legend class="symbol-legend" transform="translate(25 220)" />
     <histogram-legend
       class="histogram-legend"
       transform="translate(40,325)"
@@ -80,6 +83,7 @@ import medicaidGeojson from "../assets/data/medicaid";
 import { professionChartTitle } from "../chart-text";
 // import BeeswarmChart from './BeeswarmChart';
 import HistogramLegend from "./HistogramLegend";
+import SymbolLegend from "./SymbolLegend";
 import RowChart from "./RowChart";
 import Layers from "./Layers";
 import { mapState } from "vuex";
@@ -99,7 +103,7 @@ export default {
       mapHoverOrigin: false
     };
   },
-  components: { HistogramLegend, RowChart, Layers },
+  components: { HistogramLegend, RowChart, Layers, SymbolLegend },
   computed: {
     height() {
       return this.width * 0.6;

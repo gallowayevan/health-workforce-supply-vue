@@ -1,13 +1,13 @@
 <template>
   <g>
     <!-- **************** Rural Circles ***************-->
-    <g v-show="layerSet.has(0)">
+    <g v-show="layerSet.has(7)">
       <circle
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
         class="rural-circles"
-        fill="#fff"
-        stroke="#001a0e"
+        fill="#001a0e"
+        opacity="0.4"
         cx="0"
         cy="0"
         r="4"
@@ -24,6 +24,7 @@
         fill="none"
         stroke-width="1.5"
         stroke="#001a0e"
+        opacity="0.2"
         :d="generatePath(feature.geometry)"
       ></path>
     </g>
@@ -35,6 +36,7 @@
         class="urbanized-areas"
         fill="none"
         stroke-width="1"
+        stroke-opacity="0.5"
         stroke="#001a0e"
         :d="generatePath(feature.geometry)"
       ></path>
@@ -45,8 +47,8 @@
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
         class="triangles"
-        fill="#fff"
-        stroke="#001a0e"
+        fill="#001a0e"
+        opacity="0.4"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.549055267050423L4.805622828269508,2.7745276335252114L-4.805622828269508,2.7745276335252114Z"
       ></path>
@@ -57,20 +59,20 @@
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
         class="triangles"
-        fill="#fff"
-        stroke="#001a0e"
+        fill="#001a0e"
+        opacity="0.4"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.885661912765424L3.398088489694245,0L0,5.885661912765424L-3.398088489694245,0Z"
       ></path>
     </g>
     <!-- **************** Rural Squares***************-->
-    <g v-show="layerSet.has(7)">
+    <g v-show="layerSet.has(0)">
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
-        class="triangles"
-        fill="#fff"
-        stroke="#001a0e"
+        class="squares"
+        fill="#001a0e"
+        opacity="0.4"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M-3.1622776601683795,-3.1622776601683795h6.324555320336759v6.324555320336759h-6.324555320336759Z"
       ></path>
