@@ -2,8 +2,8 @@
   <g>
     <g v-show="layerIsActive(0)">
       <path
-        fill="#001a0e"
-        opacity="0.5"
+        fill="#ffffff"
+        stroke="#001a0e"
         d="M-3.1622776601683795,-3.1622776601683795h6.324555320336759v6.324555320336759h-6.324555320336759Z"
         transform="scale(1.5) translate(-5 0)"
       />

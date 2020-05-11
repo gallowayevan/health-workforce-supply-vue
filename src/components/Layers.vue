@@ -5,9 +5,7 @@
       <circle
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
-        class="rural-circles"
-        fill="#001a0e"
-        opacity="0.4"
+        class="rural-marker"
         cx="0"
         cy="0"
         r="4"
@@ -20,7 +18,7 @@
       <path
         v-for="feature in layersMap.get(1).geo.features"
         :key="feature.properties.LINEARID"
-        class="stars"
+        class="interstates"
         fill="none"
         stroke-width="1.5"
         stroke="#001a0e"
@@ -46,9 +44,7 @@
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
-        class="triangles"
-        fill="#001a0e"
-        opacity="0.4"
+        class="rural-marker"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.549055267050423L4.805622828269508,2.7745276335252114L-4.805622828269508,2.7745276335252114Z"
       ></path>
@@ -58,9 +54,7 @@
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
-        class="triangles"
-        fill="#001a0e"
-        opacity="0.4"
+        class="rural-marker"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.885661912765424L3.398088489694245,0L0,5.885661912765424L-3.398088489694245,0Z"
       ></path>
@@ -70,9 +64,7 @@
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
-        class="squares"
-        fill="#001a0e"
-        opacity="0.4"
+        class="rural-marker"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M-3.1622776601683795,-3.1622776601683795h6.324555320336759v6.324555320336759h-6.324555320336759Z"
       ></path>
@@ -109,5 +101,12 @@ export default {
 <style scoped>
 g {
   pointer-events: none;
+}
+
+.rural-marker {
+  /* fill: "#001a0e";
+  opacity: 0.4; */
+  fill: #ffffff;
+  stroke: #001a0e;
 }
 </style>

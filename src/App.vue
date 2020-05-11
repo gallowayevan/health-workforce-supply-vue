@@ -151,7 +151,12 @@ import LayerSelect from "./components/LayerSelect";
 import DownloadImageButton from "./components/DownloadImageButton";
 import DownloadDataButton from "./components/DownloadDataButton";
 import Map from "./components/Map";
-import { getSourceText, getPhysicianGroupText } from "./chart-text";
+import {
+  getSourceText,
+  getPhysicianGroupText,
+  getLayerText,
+  getFooterText
+} from "./chart-text";
 import Multiselect from "vue-multiselect";
 // import debounce from "lodash/debounce";
 
@@ -233,13 +238,18 @@ export default {
     yearExtent() {
       return this.$store.state.yearExtent;
     },
+    layers() {
+      return this.$store.state.layers;
+    },
     noteText() {
       const sourceText = getSourceText(this.$store.state.specialty.profession);
       const professionGroupText = getPhysicianGroupText(
         this.$store.state.specialty
       );
+      const layerText = getLayerText(this.layers);
+      const footerText = getFooterText();
 
-      return professionGroupText + sourceText;
+      return professionGroupText + sourceText + layerText + footerText;
     }
   },
   mounted() {
