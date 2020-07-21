@@ -1,7 +1,7 @@
 <template>
   <g>
     <!-- **************** Rural Circles ***************-->
-    <g v-show="layerSet.has(7)">
+    <!-- <g v-show="layerSet.has(7)">
       <circle
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
@@ -11,7 +11,7 @@
         r="4"
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
       />
-    </g>
+    </g> -->
 
     <!-- **************** Interstates ***************-->
     <g v-show="layerSet.has(1)">
@@ -40,7 +40,7 @@
       ></path>
     </g>
     <!-- **************** Rural Triangles***************-->
-    <g v-show="layerSet.has(5)">
+    <!-- <g v-show="layerSet.has(5)">
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
@@ -48,9 +48,9 @@
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.549055267050423L4.805622828269508,2.7745276335252114L-4.805622828269508,2.7745276335252114Z"
       ></path>
-    </g>
+    </g> -->
     <!-- **************** Rural Diamonds***************-->
-    <g v-show="layerSet.has(6)">
+    <!-- <g v-show="layerSet.has(6)">
       <path
         v-for="feature in layersMap.get(0).geo.features"
         :key="feature.properties.fips"
@@ -58,7 +58,7 @@
         :transform="`translate(${projection(feature.geometry.coordinates)})`"
         d="M0,-5.885661912765424L3.398088489694245,0L0,5.885661912765424L-3.398088489694245,0Z"
       ></path>
-    </g>
+    </g> -->
     <!-- **************** Rural Squares***************-->
     <g v-show="layerSet.has(0)">
       <path
