@@ -160,6 +160,12 @@ export const store = new Vuex.Store({
                         data = data.filter(e => e.year >= 2013);
                     }
 
+                      //Filter out physician data for 2020 and 2021 because of issues with collection
+                    //Should eventually just filter out of base data
+                    if (state.specialty.profession == "Physician") {
+                        data = data.filter(e => e.year != 2020 & e.year != 2021);
+                    }
+
                     //calculate medians for each year for total spark charts
                     const yearRange = range(yearMin, yearMax + 1);
 
@@ -205,7 +211,8 @@ function updateVariables(state) {
         "total",
         "percentFemale",
         "percentAge",
-        "percentUnderrepresented"
+        "percentUnderrepresented",
+        "per_raceNA"
     ];
 
     const testData = state.data.filter(d => d.region == state.region);

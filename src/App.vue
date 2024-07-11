@@ -71,7 +71,7 @@
         id="dashboard"
         style="padding-bottom: 62%"
       >
-        <svg class="scaling-svg dashboard" viewBox="0 0 960 600">
+        <svg class="scaling-svg dashboard" viewBox="0 0 960 720">
           <defs>
             <pattern id="NApattern" patternUnits="userSpaceOnUse" width="8" height="8">
               <image
@@ -83,8 +83,9 @@
               />
             </pattern>
           </defs>
-          <rect width="960" height="600" fill="#fff" @click="rectClicked" />
-          <Map />
+          <rect width="960" height="720" fill="#fff" @click="rectClicked" />
+          <Map v-if="dataAvailable"/>
+          <text v-else transform="translate(200, 300)" fill="#000" font-size="24px" text-anchor="middle">Physician data from 2020 and 2021 are unavailable.</text>
           <spark-bar-chart-group />
         </svg>
       </div>
@@ -221,6 +222,9 @@ export default {
     dataLoaded() {
       return this.$store.state.dataLoaded;
     },
+    profession() {
+      return this.$store.state.specialty.profession;
+    },
     medicaidRegions() {
       return this.$store.state.medicaidRegions;
     },
@@ -240,6 +244,9 @@ export default {
     },
     layers() {
       return this.$store.state.layers;
+    },
+    dataAvailable(){
+      return !(this.profession == "Physician" & (this.year == 2020 | this.year == 2021));
     },
     noteText() {
       const sourceText = getSourceText(this.$store.state.specialty.profession);

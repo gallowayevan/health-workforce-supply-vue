@@ -33,6 +33,12 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Underrepresented Minorities";
         break;
+        case "per_raceNA":
+          professionVariableText =
+            "Percent of " +
+            name +
+            " Missing Race";
+          break;
       case "total":
         professionVariableText =
           "Total Number of " + name;
@@ -74,6 +80,14 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Underrepresented Minorities";
         break;
+        case "per_raceNA":
+          professionVariableText =
+            "Percent of " +
+            profession +
+            "s with a Primary Area of Practice of " +
+            name +
+            " who were Missing Race";
+          break;
       case "total":
         professionVariableText =
           "Total Number of " +
@@ -115,6 +129,14 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Underrepresented Minorities";
         break;
+        case "per_raceNA":
+          professionVariableText =
+            "Percent of " +
+            profession +
+            "s with a Specialty of " +
+            name +
+            " who were Missing Race";
+          break;
       case "total":
         professionVariableText =
           "Total Number of " +
@@ -161,7 +183,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Physician":
       currentSpecialtyText +=
-        "Data include active, licensed physicians in practice in North Carolina as of October 31 of each year who are not residents-in-training and are not employed by the Federal government.  Physician data are derived from the North Carolina Medical Board.  County estimates are based on primary practice location.";
+        "Data include active, licensed physicians in practice in North Carolina as of October 31 of each year who are not residents-in-training and are not employed by the Federal government.  Physician data are derived from the North Carolina Medical Board.  County estimates are based on primary practice location. <span style='font-weight: bold;'>Data from 2020 and 2021 are unavailable because of issues with the data which make longitudinal comparisons misleading</span>.";
       break;
     case "Pharmacist":
       currentSpecialtyText +=

@@ -68,6 +68,16 @@ export default {
         this.variable
       );
     },
+    raceNAData: function() {
+      return this.$store.getters.getDataByVariableForCurrentRegion(
+        "per_raceNA"
+      );
+    },
+    underrepresentedData: function() {
+      return this.$store.getters.getDataByVariableForCurrentRegion(
+        "percentUnderrepresented"
+      );
+    },
     title: function() {
       return this.chartTitle(this.variable);
     },
@@ -95,7 +105,7 @@ export default {
         .range([0, this.chartWidth]); //for making ncLine
 
       //y scale
-      const yMax = this.calculateYMax();
+      const yMax = this.calculateYMax(this.variable);
       const yScale = scaleLinear()
         .domain([0, yMax])
         .range([this.chartHeight, 0]);
@@ -147,10 +157,15 @@ export default {
     click: function(){
       this.$store.commit('changeVariable', this.variable)
     },
-    calculateYMax: function() {
+    calculateYMax: function(currentVariable) {
       const regionMax = Math.max(
         max(this.chartData, d => d.value),
-        max(this.ncData, d => d.value)
+        max(this.ncData, d => d.value),
+        currentVariable == "percentUnderrepresented" ?  
+        max(this.raceNAData, d => +d.value) : 
+        currentVariable == "per_raceNA" ? 
+        max(this.underrepresentedData, d => +d.value)
+         : 0
       );
       return regionMax;
     },
@@ -168,6 +183,9 @@ export default {
           break;
         case "percentUnderrepresented":
           currentChartTitle = "Percent Underrepresented Minority";
+          break;
+          case "per_raceNA":
+          currentChartTitle = "Percent Missing Race";
           break;
         case "total":
           currentChartTitle = "Total";

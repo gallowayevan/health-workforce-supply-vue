@@ -151,6 +151,9 @@ export default {
         case "percentUnderrepresented":
           currentChartTitle = "Percent Underrepresented Minority";
           break;
+          case "per_raceNA":
+          currentChartTitle = "Percent Missing Race";
+          break;
         case "total":
           currentChartTitle = "Total";
           break;
