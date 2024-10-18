@@ -13,27 +13,27 @@ export function professionChartTitle(variable, specialtyObject) {
 
 
     switch (variable) {
-      case "providerRate":
+      case "provider_rate":
         professionVariableText =
           name + " per 10,000 Population";
         break;
-      case "percentFemale":
+      case "percent_female":
         professionVariableText =
           "Percent of " + name + " who were Female";
         break;
-      case "percentAge":
+      case "percent_age":
         professionVariableText =
           "Percent of " +
           name +
           " who were 65 or Older";
         break;
-      case "percentUnderrepresented":
+      case "percent_underrepresented":
         professionVariableText =
           "Percent of " +
           name +
           " who were Underrepresented Minorities";
         break;
-        case "per_raceNA":
+        case "percent_race_na":
           professionVariableText =
             "Percent of " +
             name +
@@ -49,14 +49,14 @@ export function professionChartTitle(variable, specialtyObject) {
     profession == "Physician Assistant"
   ) {
     switch (variable) {
-      case "providerRate":
+      case "provider_rate":
         professionVariableText =
           profession +
           "s with a Primary Area of Practice of " +
           name +
           " per 10,000 Population";
         break;
-      case "percentFemale":
+      case "percent_female":
         professionVariableText =
           "Percent of " +
           profession +
@@ -64,7 +64,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Female";
         break;
-      case "percentAge":
+      case "percent_age":
         professionVariableText =
           "Percent of " +
           profession +
@@ -72,7 +72,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were 65 or Older";
         break;
-      case "percentUnderrepresented":
+      case "percent_underrepresented":
         professionVariableText =
           "Percent of " +
           profession +
@@ -80,7 +80,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Underrepresented Minorities";
         break;
-        case "per_raceNA":
+        case "percent_race_na":
           professionVariableText =
             "Percent of " +
             profession +
@@ -98,14 +98,14 @@ export function professionChartTitle(variable, specialtyObject) {
     }
   } else {
     switch (variable) {
-      case "providerRate":
+      case "provider_rate":
         professionVariableText =
           profession +
           "s with a Specialty of " +
           name +
           " per 10,000 Population";
         break;
-      case "percentFemale":
+      case "percent_female":
         professionVariableText =
           "Percent of " +
           profession +
@@ -113,7 +113,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Female";
         break;
-      case "percentAge":
+      case "percent_age":
         professionVariableText =
           "Percent of " +
           profession +
@@ -121,7 +121,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were 65 or Older";
         break;
-      case "percentUnderrepresented":
+      case "percent_underrepresented":
         professionVariableText =
           "Percent of " +
           profession +
@@ -129,7 +129,7 @@ export function professionChartTitle(variable, specialtyObject) {
           name +
           " who were Underrepresented Minorities";
         break;
-        case "per_raceNA":
+        case "percent_race_na":
           professionVariableText =
             "Percent of " +
             profession +

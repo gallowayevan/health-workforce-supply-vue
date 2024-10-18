@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { csv } from "d3-request";
+
 import { format } from "d3-format";
 import { median, range } from "d3-array";
 import env from "./env";
@@ -18,7 +18,7 @@ export const store = new Vuex.Store({
     region: "North Carolina",
     hoveredYear: 0,
     variables: [],
-    variable: "providerRate",
+    variable: "provider_rate",
     year: 2017,
     data: [],
     loadFailed: false,
@@ -154,8 +154,7 @@ export const store = new Vuex.Store({
           data.forEach(function(d) {
             d.total = +d.total;
             d.year = +d.year;
-            d.providerRate = +d.providerRate;
-
+            d.provider_rate = +d.provider_rate;
             if (d.type == "medicaid") medicaidRegions = true;
 
             //calculate extent of years available
@@ -218,6 +217,7 @@ export const store = new Vuex.Store({
           commit("changeYearExtent", [yearMin, yearMax]);
 
           updateVariables(state);
+          state.dataLoaded = true;
         })
         .catch((error) => {
           state.loadFailed = true;
@@ -230,25 +230,25 @@ export const store = new Vuex.Store({
 function updateVariables(state) {
   //Need to check that variables are all worth showing
   const defaultArray = [
-    "providerRate",
+    "provider_rate",
     "total",
-    "percentFemale",
-    "percentAge",
-    "percentUnderrepresented",
-    "per_raceNA",
+    "percent_female",
+    "percent_age",
+    "percent_underrepresented",
+    "percent_race_na",
   ];
 
   const testData = state.data.filter((d) => d.region == state.region);
   state.variables = defaultArray.filter(function(el) {
     return (
       testData.filter(
-        (d) => d[el] == "NA" || d[el] < 0 || !d.hasOwnProperty(el)
+        (d) => d[el] === null || d[el] < 0 || !d.hasOwnProperty(el)
       ).length == 0
     );
   });
   console.log(state.variables);
   //Check that current variable is in the set of variables in the new data
   if (state.variables.indexOf(state.variable) == -1) {
-    state.variable = "providerRate";
+    state.variable = "provider_rate";
   }
 }

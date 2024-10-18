@@ -30,7 +30,7 @@ export default {
     barData: function() {
       let newData = this.$store.getters
         .getDataByCurrentVariableForCurrentRegionTypeCurrentYear;
-      return Array.from(newData).filter(d=>d[1] != "NA" && d[1] > 0).sort((a,b)=>b[1] - a[1]);
+      return Array.from(newData).filter(d=>!(d[1] === null) && d[1] > 0).sort((a,b)=>b[1] - a[1]);
     },
     chartWidth: function(){return this.width - this.chartMargin.left - this.chartMargin.right},
     chartHeight: function(){return this.height - this.chartMargin.top - this.chartMargin.bottom},

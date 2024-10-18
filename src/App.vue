@@ -246,6 +246,7 @@ export default {
       return this.$store.state.layers;
     },
     dataAvailable(){
+    
       return !(this.profession == "Physician" & (this.year == 2020 | this.year == 2021));
     },
     noteText() {
@@ -261,6 +262,7 @@ export default {
   },
   mounted() {
     const currIntro = localStorage.getItem("intro");
+
     if (currIntro != "seen") {
       this.$tours["userTour"].start();
       localStorage.setItem("intro", "seen");

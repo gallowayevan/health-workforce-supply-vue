@@ -70,12 +70,12 @@ export default {
     },
     raceNAData: function() {
       return this.$store.getters.getDataByVariableForCurrentRegion(
-        "per_raceNA"
+        "percent_race_na"
       );
     },
     underrepresentedData: function() {
       return this.$store.getters.getDataByVariableForCurrentRegion(
-        "percentUnderrepresented"
+        "percent_underrepresented"
       );
     },
     title: function() {
@@ -146,7 +146,7 @@ export default {
     },
      ncText() {
       let txt = "State ";
-      txt = this.variable == "providerRate"
+      txt = this.variable == "provider_rate"
         ? txt + "Rate"
         : this.variable == "total" ? txt + "Median" : txt + "%";
 
@@ -161,9 +161,9 @@ export default {
       const regionMax = Math.max(
         max(this.chartData, d => d.value),
         max(this.ncData, d => d.value),
-        currentVariable == "percentUnderrepresented" ?  
+        currentVariable == "percent_underrepresented" ?  
         max(this.raceNAData, d => +d.value) : 
-        currentVariable == "per_raceNA" ? 
+        currentVariable == "percent_race_na" ? 
         max(this.underrepresentedData, d => +d.value)
          : 0
       );
@@ -172,19 +172,19 @@ export default {
     chartTitle: function(currentVariable) {
       var currentChartTitle = currentVariable;
       switch (currentVariable) {
-        case "providerRate":
+        case "provider_rate":
           currentChartTitle = "Rate per 10,000 Population";
           break;
-        case "percentFemale":
+        case "percent_female":
           currentChartTitle = "Percent Female";
           break;
-        case "percentAge":
+        case "percent_age":
           currentChartTitle = "Percent 65 or Older";
           break;
-        case "percentUnderrepresented":
+        case "percent_underrepresented":
           currentChartTitle = "Percent Underrepresented Minority";
           break;
-          case "per_raceNA":
+          case "percent_race_na":
           currentChartTitle = "Percent Missing Race";
           break;
         case "total":

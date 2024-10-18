@@ -9,13 +9,13 @@ const formatters = {
 export function formatter(type) {
     let currentType = "percent";
 
-    if (type == "providerRate") {
+    if (type == "provider_rate") {
         currentType = "rate"
     } else if (type == "total") {
         currentType = "total"
     }
 
-    return function (value) { return value == -9 ? "NA" : formatters[currentType](value) };
+    return function (value) { return value === null | value < 0 ? "NA" : formatters[currentType](value) };
 }
 
 export function sortStrings(a, b) {

@@ -12,7 +12,7 @@
         @click="clicked(item.properties.county)"
       >
         <title
-          v-html="`${item.properties.county} County\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `providerRate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
+          v-html="`${item.properties.county} County\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `provider_rate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
         ></title>
       </path>
     </g>
@@ -30,7 +30,7 @@
         @click="clicked(item.properties.ahec)"
       >
         <title
-          v-html="`${item.properties.ahec == 'Wake AHEC' ? 'Wake' : item.properties.ahec}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `providerRate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
+          v-html="`${item.properties.ahec == 'Wake AHEC' ? 'Wake' : item.properties.ahec}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `provider_rate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
         ></title>
       </path>
     </g>
@@ -48,7 +48,7 @@
         @click="clicked(item.properties.medicaid)"
       >
         <title
-          v-html="`${getMedicaidRegionName(item.properties.medicaid)}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `providerRate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
+          v-html="`${getMedicaidRegionName(item.properties.medicaid)}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `provider_rate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
         ></title>
       </path>
     </g>
@@ -164,7 +164,7 @@ export default {
             //   this.aggregationLevel == "medicaid"
             //     ? +d.region.slice(-1)
             //     : d.region;
-            return [d.region, d[this.variable]];
+            return [d.region, d[this.variable] === null ? -9: d[this.variable]];
           })
       );
 
@@ -201,7 +201,7 @@ export default {
           d =>
             d.type == this.aggregationLevel &&
             d[this.variable] > 0 &&
-            d[this.variable] != "NA"
+            !(d[this.variable] === null)
         )
         .map(d => ({ value: d[this.variable], year: d.year }));
     },
@@ -294,16 +294,16 @@ export default {
     hoverValueText() {
       let variableText = "";
       switch (this.variable) {
-        case "providerRate":
+        case "provider_rate":
           variableText = "per 10,000 population";
           break;
-        case "percentFemale":
+        case "percent_female":
           variableText = "female";
           break;
-        case "percentAge":
+        case "percent_age":
           variableText = "65 or older";
           break;
-        case "percentUnderrepresented":
+        case "percent_underrepresented":
           variableText = "underrepresented minority";
           break;
         case "total":

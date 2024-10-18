@@ -65,7 +65,7 @@ export default {
       csv += "Profession: " + this.$store.state.specialty.profession + "\n";
       csv += "Specialty/PAOP: " + this.$store.state.specialty.specialty + "\n";
       csv += `Variable: ${
-        variable == "providerRate" ? "rate per 10k" : variable
+        variable == "provider_rate" ? "rate per 10k" : variable
       }\n`;
       csv += notesText;
       csv += csvFormat(formattedData, [

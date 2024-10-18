@@ -86,7 +86,7 @@ export default {
         .filter(d => d.year == this.$store.state.year)[0];
     },
     missingRegions() {
-      return Array.from(this.mapData).filter(d => d[1] == "NA" || d[1] < 0)
+      return Array.from(this.mapData).filter(d => d[1] === null || d[1] < 0)
         .length;
     },
     zeroRegions() {
@@ -139,16 +139,16 @@ export default {
     chartTitle() {
       let currentChartTitle = "Histogram";
       switch (this.variable) {
-        case "providerRate":
+        case "provider_rate":
           currentChartTitle = "Rate per 10,000 Population";
           break;
-        case "percentFemale":
+        case "percent_female":
           currentChartTitle = "Percent Female";
           break;
-        case "percentAge":
+        case "percent_age":
           currentChartTitle = "Percent 65 or Older";
           break;
-        case "percentUnderrepresented":
+        case "percent_underrepresented":
           currentChartTitle = "Percent Underrepresented Minority";
           break;
           case "per_raceNA":
@@ -162,7 +162,7 @@ export default {
     },
     ncText() {
       let txt = "State ";
-      txt = this.variable == "providerRate"
+      txt = this.variable == "provider_rate"
         ? txt + "Rate"
         : this.variable == "total" ? txt + "Median" : txt + "Percentage";
 
@@ -189,7 +189,7 @@ export default {
       let formatted = currValue;
       if (this.variable.indexOf("percent") > -1) {
         formatted = Math.round(currValue * 100) + "%";
-      } else if(this.variable == "providerRate"){
+      } else if(this.variable == "provider_rate"){
         formatted = format("")(currValue);
       } else {
         formatted = this.valueFormatter(currValue)

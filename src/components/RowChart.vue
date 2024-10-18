@@ -76,19 +76,19 @@ export default {
     hoverValueText() {
       let variableText = "";
       switch (this.variable) {
-        case "providerRate":
+        case "provider_rate":
           variableText = "per 10,000 population";
           break;
-        case "percentFemale":
+        case "percent_female":
           variableText = "female";
           break;
-        case "percentAge":
+        case "percent_age":
           variableText = "65 or older";
           break;
-        case "percentUnderrepresented":
+        case "percent_underrepresented":
           variableText = "underrepresented minority";
           break;
-          case "per_raceNA":
+          case "percent_race_na":
           currentChartTitle = "Percent Missing Race";
           break;
         case "total":
@@ -104,19 +104,19 @@ export default {
     chartTitle() {
       let currentChartTitle = "Histogram";
       switch (this.variable) {
-        case "providerRate":
+        case "provider_rate":
           currentChartTitle = "Rate per 10,000 Population";
           break;
-        case "percentFemale":
+        case "percent_female":
           currentChartTitle = "Percent Female";
           break;
-        case "percentAge":
+        case "percent_age":
           currentChartTitle = "Percent 65 or Older";
           break;
-        case "percentUnderrepresented":
+        case "percent_underrepresented":
           currentChartTitle = "Percent Underrepresented Minority";
           break;
-          case "per_raceNA":
+          case "percent_race_na":
           currentChartTitle = "Percent Missing Race";
           break;
         case "total":
@@ -128,7 +128,7 @@ export default {
     ncText() {
       let txt = "State ";
       txt =
-        this.variable == "providerRate"
+        this.variable == "provider_rate"
           ? txt + "Rate"
           : this.variable == "total"
           ? "Median"
@@ -143,7 +143,7 @@ export default {
             d =>
               d.type == this.aggregationLevel &&
               d[this.variable] > 0 &&
-              d[this.variable] != "NA"
+              !(d[this.variable] === null)
           )
           .map(d => d[this.variable])
       );
@@ -166,7 +166,7 @@ export default {
       let formatted = currValue;
       if (this.variable.indexOf("percent") > -1) {
         formatted = Math.round(currValue * 100) + "%";
-      } else if (this.variable == "providerRate") {
+      } else if (this.variable == "provider_rate") {
         formatted = format("")(currValue);
       } else {
         formatted = this.valueFormatter(currValue);

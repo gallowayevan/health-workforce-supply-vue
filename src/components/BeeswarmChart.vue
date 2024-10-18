@@ -78,11 +78,11 @@ export default {
       //not sure why ncData doesn't update in time for this function
       let ncData = 0;
       if(typeof this.ncData !== 'undefined'){ ncData = this.ncData.value};
-      let sData = Array.from(this.mapData).filter(d=>d[1] != "NA" && d[1] > 0);
+      let sData = Array.from(this.mapData).filter(d=>d[1] != null && d[1] > 0);
       sData.push(["North Carolina", +ncData]);
       return sData;
     },
-    missingRegions() {return Array.from(this.mapData).filter(d=>d[1] == "NA" || d[1]  < 0).length},
+    missingRegions() {return Array.from(this.mapData).filter(d=>d[1] == null || d[1]  < 0).length},
     zeroRegions(){return Array.from(this.mapData).filter(d=>d[1] == 0).length},
     chartWidth: function(){return this.width - this.chartMargin.left - this.chartMargin.right},
     chartHeight: function(){return this.height - this.chartMargin.top - this.chartMargin.bottom},
@@ -111,16 +111,16 @@ export default {
     chartTitle(){
             let currentChartTitle = "Beeswarm Plot"
             switch (this.variable) {
-                case "providerRate":
+                case "provider_rate":
                     currentChartTitle = "Rate per 10,000 Population";
                     break;
-                case "percentFemale":
+                case "percent_female":
                 currentChartTitle = "Percent Female";
                     break;
-                case "percentAge":
+                case "percent_age":
                     currentChartTitle = "Percent 65 or Older";
                     break;  
-                case "percentUnderrepresented":
+                case "percent_underrepresented":
                     currentChartTitle = "Percent Underrepresented Minority";
                     break;
                 case "total":

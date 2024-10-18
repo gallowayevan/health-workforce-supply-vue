@@ -121,19 +121,19 @@ export default {
     chartTitle: function(currentVariable){
             var currentChartTitle = currentVariable;
             switch (currentVariable) {
-                case "providerRate":
+                case "provider_rate":
                     currentChartTitle = "Rate per 10,000 Population";
                     break;
-                case "percentFemales":
+                case "percent_females":
                 currentChartTitle = "Percent Female";
                     break;
-                case "percentAge":
+                case "percent_age":
                     currentChartTitle = "Percent 65 or Older";
                     break;
-                case "percentUnderrepresented":
+                case "percent_underrepresented":
                     currentChartTitle = "Percent Underrepresented Minority";
                     break;
-                    case "per_raceNA":
+                    case "percent_race_na":
           currentChartTitle = "Percent Missing Race";
           break;
                 case "total":
