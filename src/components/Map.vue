@@ -233,6 +233,7 @@ export default {
       const currDomain = this.currentDomainAllTime
         .filter(d => d.year == this.scaleYear)
         .map(d => +d.value);
+      
 
       if (this.aggregationLevel == "county") {
         const currRangeCount = currDomain.length;
@@ -244,6 +245,7 @@ export default {
         const currRange = schemeYlGn[numberOfColorBins + 1].slice(1); //get rid of yellow as it is too light
         const currBinWidth =
           this.histogramData[1].x1 - this.histogramData[1].x0; //max(this.histogramData, d=>d.x1 - d.x0);
+
         const clusterScale = scaleCluster()
           .domain(currDomain)
           .range(currRange);

@@ -199,7 +199,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Registered Nurse":
       currentSpecialtyText +=
-        "Data include active, licensed registered nurses in practice in North Carolina as of October 31 of each year.  Registered nurse data are derived from the North Carolina Board of Nursing.";
+        "Data include active, licensed registered nurses in practice in North Carolina as of October 31 of each year.  Registered nurse data are derived from the North Carolina Board of Nursing. In 2018 and 2019, the NC Board of Nursing updated the data they report to the Cecil G. Sheps Center, including more detailed information regarding unemployment and not working in nursing professions.";
       break;
     case "Licensed Practical Nurse":
       currentSpecialtyText +=
@@ -251,7 +251,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Chiropractor":
       currentSpecialtyText +=
-        "Data include active, licensed chiropractors in practice in North Carolina as of October 31 of each year.  Chiropractor data are derived from the North Carolina State Board of Chiropractic Examiners. For 2015 only, the NC Board of Chiropractic Examiners did not provide an annual file of licensure data to the HPDS. 2015 chiropractor data were imputed from other years.";
+        "Data include active, licensed chiropractors in practice in North Carolina as of October 31 of each year.  Chiropractor data are derived from the North Carolina State Board of Chiropractic Examiners. For 2015 only, the NC Board of Chiropractic Examiners did not provide an annual file of licensure data to the HPDS. 2015 chiropractor data were imputed from other years. As of 2022, the NC Board of Chiropractic Examiners is no longer collecting data on the race or gender of licensees.";
       break;
   }
   ;

@@ -1,9 +1,9 @@
 let globalEnv = {
     development: {
-      ROOT_API: "data/"
+      ROOT_API: "http://localhost:1313/"
     },
    production: {
-    ROOT_API: "https://data-dept-healthworkforce.cloudapps.unc.edu/data/"
+    ROOT_API: "https://hpdsdatanode-dept-healthworkforce.cloudapps.unc.edu/"
     }
   };
   

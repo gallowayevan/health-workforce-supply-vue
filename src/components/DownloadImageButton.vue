@@ -36,10 +36,10 @@ export default {
         "text"
       );
       newText.setAttributeNS(null, "font-size", "10px");
-      newText.setAttributeNS(null, "transform", "translate(270,660)");
+      newText.setAttributeNS(null, "transform", "translate(10,750)");
 
       const notes = document.querySelector(".notes-text").innerText;
-      newText.innerHTML = wrap({ text: notes, maxCharsPerLine: 155 });
+      newText.innerHTML = wrap({ text: notes, maxCharsPerLine: 200 });
       dashboard.appendChild(newText);
 
       svg("sheps_workforce_nc_for_web.svg")
