@@ -1,153 +1,64 @@
-import { timeFormat } from 'd3-time-format'
-import { physicianGroups } from './assets/data/physicianGroups'
+import { timeFormat } from 'd3-time-format';
+import { physicianGroups } from './assets/data/physicianGroups';
 
 export function professionChartTitle(variable, specialtyObject) {
-  let professionVariableText;
-  let name = specialtyObject.name;
-  const profession = specialtyObject.profession;
-  const specialty = specialtyObject.specialty;
+  const { name, profession, specialty } = specialtyObject;
+  
+  // Define variable descriptions
+  const variableDescriptions = {
+    provider_rate: "per 10,000 Population",
+    percent_female: "who were Female",
+    percent_age: "who were 65 or Older",
+    percent_underrepresented: "who were Underrepresented Minorities",
+    percent_race_na: "Missing Race",
+    total: null // Special case - handled differently
+  };
 
-  if (specialty == profession) {
-
-    name = profession == "Physician" || profession == "Physician Assistant" || profession == "Dentist" ? profession + "s" : name;
-
-
-    switch (variable) {
-      case "provider_rate":
-        professionVariableText =
-          name + " per 10,000 Population";
-        break;
-      case "percent_female":
-        professionVariableText =
-          "Percent of " + name + " who were Female";
-        break;
-      case "percent_age":
-        professionVariableText =
-          "Percent of " +
-          name +
-          " who were 65 or Older";
-        break;
-      case "percent_underrepresented":
-        professionVariableText =
-          "Percent of " +
-          name +
-          " who were Underrepresented Minorities";
-        break;
-        case "percent_race_na":
-          professionVariableText =
-            "Percent of " +
-            name +
-            " Missing Race";
-          break;
-      case "total":
-        professionVariableText =
-          "Total Number of " + name;
-        break;
+  // Handle special pluralization cases
+  const pluralize = (prof) => {
+    if (["Physician", "Physician Assistant", "Dentist"].includes(prof)) {
+      return prof + "s";
     }
-  } else if (
-    profession == "Physician" ||
-    profession == "Physician Assistant"
-  ) {
-    switch (variable) {
-      case "provider_rate":
-        professionVariableText =
-          profession +
-          "s with a Primary Area of Practice of " +
-          name +
-          " per 10,000 Population";
-        break;
-      case "percent_female":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Primary Area of Practice of " +
-          name +
-          " who were Female";
-        break;
-      case "percent_age":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Primary Area of Practice of " +
-          name +
-          " who were 65 or Older";
-        break;
-      case "percent_underrepresented":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Primary Area of Practice of " +
-          name +
-          " who were Underrepresented Minorities";
-        break;
-        case "percent_race_na":
-          professionVariableText =
-            "Percent of " +
-            profession +
-            "s with a Primary Area of Practice of " +
-            name +
-            " who were Missing Race";
-          break;
-      case "total":
-        professionVariableText =
-          "Total Number of " +
-          profession +
-          "s with a Primary Area of Practice of " +
-          name;
-        break;
+    if (prof === "Certified Nurse Midwife") {
+      return prof.replace("wife", "wives");
     }
+    return prof + "s";
+  };
+
+  // Build the base subject string
+  let subject;
+  
+  if (specialty === profession) {
+    // Direct profession (no specialty)
+    subject = pluralize(profession);
+  } else if (["Physician", "Physician Assistant"].includes(profession)) {
+    // Primary Area of Practice
+    subject = `${pluralize(profession)} with a Primary Area of Practice of ${name}`;
+  } else if (profession === "Certified Nurse Midwife") {
+    // Special case for midwives
+    subject = pluralize(name);
   } else {
-    switch (variable) {
-      case "provider_rate":
-        professionVariableText =
-          profession +
-          "s with a Specialty of " +
-          name +
-          " per 10,000 Population";
-        break;
-      case "percent_female":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Specialty of " +
-          name +
-          " who were Female";
-        break;
-      case "percent_age":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Specialty of " +
-          name +
-          " who were 65 or Older";
-        break;
-      case "percent_underrepresented":
-        professionVariableText =
-          "Percent of " +
-          profession +
-          "s with a Specialty of " +
-          name +
-          " who were Underrepresented Minorities";
-        break;
-        case "percent_race_na":
-          professionVariableText =
-            "Percent of " +
-            profession +
-            "s with a Specialty of " +
-            name +
-            " who were Missing Race";
-          break;
-      case "total":
-        professionVariableText =
-          "Total Number of " +
-          profession +
-          "s with a Specialty of " +
-          name;
-        break;
-    }
+    // General specialty case
+    subject = `${pluralize(profession)} with a Specialty of ${name}`;
   }
 
-  return professionVariableText;
+  // Build the final title based on variable
+  if (variable === "total") {
+    return `Total Number of ${subject}`;
+  }
+  
+  const description = variableDescriptions[variable];
+  if (!description) {
+    throw new Error(`Unknown variable: ${variable}`);
+  }
+  
+  if (variable === "percent_race_na") {
+    return `Percent of ${subject} who were ${description}`;
+  }
+  
+  return variable === "provider_rate" 
+    ? `${subject} ${description}`
+    : `Percent of ${subject} ${description}`;
 }
 
 export function getLayerText(layers) {

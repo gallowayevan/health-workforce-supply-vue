@@ -15,7 +15,7 @@
     </div>
     <transition>
       <div class="specialty-select" v-show="showSpecialtyBox">
-        <label>and a specialty</label>
+        <label>and a {{ value.profession === 'Certified Nurse Midwife' ? 'practice type' : 'specialty' }}</label>
         <multiselect
           :value="value"
           :options="specialties"
