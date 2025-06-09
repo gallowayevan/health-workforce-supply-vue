@@ -19,7 +19,7 @@ export function professionChartTitle(variable, specialtyObject) {
     if (["Physician", "Physician Assistant", "Dentist"].includes(prof)) {
       return prof + "s";
     }
-    if (prof === "Certified Nurse Midwife") {
+    if (prof.includes("Certified Nurse Midwife")) {
       return prof.replace("wife", "wives");
     }
     return prof + "s";
