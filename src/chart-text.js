@@ -65,7 +65,7 @@ export function getLayerText(layers) {
   const checkLayers = function (testValue) { return ({ value }) => value == testValue };
   let text = "";
   if (layers.some(checkLayers(0))) {
-    text += " Rural/nonmetropolitan counties are defined using the 2017 Office of Management and Budget Core Based Statistical Areas (CBSAs). Rural/nonmetropolitan counties include micropolitan counties and counties without CBSAs. Using this definition, NC has 54 nonmetro counties."
+    text += " Rural/nonmetropolitan counties are defined using the July 2023 Core Based Statistical Areas (CBSAs) delineation file from the US Office of Management and Budget and the US Census Bureau. Rural/nonmetropolitan counties include micropolitan counties and counties without CBSAs. Using this definition, NC has 55 nonmetro counties."
   }
   if (layers.some(checkLayers(2))) {
     text += " Urbanized areas are contiguous areas defined by the the United States Census Bureau, which have 50,000 or more people. Typically, this will include a dense urban core and areas around that core. This layer uses the 2017 update."
