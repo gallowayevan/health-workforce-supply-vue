@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import { format } from "d3-format";
 import { median, range } from "d3-array";
 import env from "./env";
+import { ruralRootsLabels } from "./assets/data/ruralRoots";
 
 Vue.use(Vuex);
 
@@ -30,6 +31,7 @@ export const store = new Vuex.Store({
     medianCountyData: [],
     medianAhecData: [],
     medianMedicaidData: [],
+    medianRuralRootsData: [],
     dataLoaded: false,
     freezeScale: false,
     scaleYear: 2017,
@@ -92,6 +94,9 @@ export const store = new Vuex.Store({
     changeMedicaidMedians(state, data) {
       state.medianMedicaidData = data;
     },
+    changeRuralRootsMedians(state, data) {
+      state.medianRuralRootsData = data;
+    },
     // changeWindowResize(state) {
     //     state.windowResize++;
     // },
@@ -121,6 +126,8 @@ export const store = new Vuex.Store({
         return state.medianCountyData;
       } else if (state.aggregationLevel == "ahec") {
         return state.medianAhecData;
+      } else if (state.aggregationLevel == "ruralroots") {
+        return state.medianRuralRootsData;
       } else {
         return state.medianMedicaidData;
       }
@@ -182,6 +189,18 @@ export const store = new Vuex.Store({
             data = data.filter((e) => (e.year != 2020) & (e.year != 2021));
           }
 
+          //Rural Roots Hubs are the NC Medicaid regions with different labels
+          //(identical county groupings), so clone the medicaid rows and relabel.
+          const ruralRootsRows = data
+            .filter((d) => d.type == "medicaid")
+            .map((d) =>
+              Object.assign({}, d, {
+                type: "ruralroots",
+                region: ruralRootsLabels[d.region] || d.region,
+              })
+            );
+          data = data.concat(ruralRootsRows);
+
           //calculate medians for each year for total spark charts
           const yearRange = range(yearMin, yearMax + 1);
 
@@ -211,6 +230,8 @@ export const store = new Vuex.Store({
           commit("changeCountyMedians", countyMedians);
           commit("changeAHECMedians", ahecMedians);
           commit("changeMedicaidMedians", medicaidMedians);
+          // Rural Roots Hubs == Medicaid regions, so medians are identical.
+          commit("changeRuralRootsMedians", medicaidMedians);
           commit("changeData", data);
           commit("changeYear", yearMax);
           commit("changeScaleYear", yearMax);

@@ -61,7 +61,7 @@
       >nchealthworkforce@unc.edu</a>.
     </div>
     <div
-      v-else-if="!medicaidRegions & aggregationLevel == 'medicaid'"
+      v-else-if="!medicaidRegions & (aggregationLevel == 'medicaid' | aggregationLevel == 'ruralroots')"
       class="failed"
     >We do not have data for medicaid regions for this profession. Please select another choice.</div>
     <div v-else>
@@ -177,7 +177,8 @@ export default {
       aggregationSelect: [
         { value: "county", label: "County" },
         { value: "ahec", label: "AHEC" },
-        { value: "medicaid", label: "Medicaid Region" }
+        { value: "medicaid", label: "Medicaid Region" },
+        { value: "ruralroots", label: "Rural Roots Hub" }
       ],
       steps: [
         {

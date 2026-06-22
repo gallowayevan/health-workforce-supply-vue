@@ -52,6 +52,24 @@
         ></title>
       </path>
     </g>
+    <g
+      class="ruralroots"
+      :transform="`translate(${chartMargin.left}, ${chartMargin.top})`"
+      v-show="aggregationLevel == 'ruralroots'"
+    >
+      <path
+        v-for="item in ruralrootsFeatures"
+        :key="item.properties.ruralroots"
+        :d="generatePath(item.geometry)"
+        class="overlay medicaid"
+        :class="{selected: item.properties.ruralroots == region}"
+        @click="clicked(item.properties.ruralroots)"
+      >
+        <title
+          v-html="`${item.properties.ruralroots}\n${hoverValueText(mapData.get(item.properties[aggregationLevel]))}${variable == `provider_rate` ? `\n(` + totalMap.get(item.properties[aggregationLevel]) + ` total)` : ``}`"
+        ></title>
+      </path>
+    </g>
     <layers
       class="layers"
       :transform="`translate(${chartMargin.left}, ${chartMargin.top})`"
@@ -80,6 +98,7 @@ import { formatter, wrap, medicaidRegionName } from "../utility";
 import mapGeojson from "../assets/data/ncMap";
 import ahecGeojson from "../assets/data/ahec";
 import medicaidGeojson from "../assets/data/medicaid";
+import ruralRootsGeojson from "../assets/data/ruralRoots";
 import { professionChartTitle } from "../chart-text";
 // import BeeswarmChart from './BeeswarmChart';
 import HistogramLegend from "./HistogramLegend";
@@ -144,12 +163,26 @@ export default {
 
       return features;
     },
+    ruralrootsFeatures: function() {
+      let features = ruralRootsGeojson.features;
+      const region = this.region;
+      //Need to reorder to bring selected region to front of render stack to show stroke
+      if (region != "North Carolina" && this.aggregationLevel == "ruralroots") {
+        let index = 0;
+        index = features.map(d => d.properties.ruralroots).indexOf(region);
+        features.push(features.splice(index, 1)[0]);
+      }
+
+      return features;
+    },
     title: function() {
       let title = `${professionChartTitle(this.variable, this.specialty)} by ${
         this.aggregationLevel == "county"
           ? "County"
           : this.aggregationLevel == "ahec"
           ? "AHEC region"
+          : this.aggregationLevel == "ruralroots"
+          ? "Rural Roots Hub"
           : "Medicaid Region"
       }, North Carolina, ${this.year}`;
       // console.log(wrap(title))
