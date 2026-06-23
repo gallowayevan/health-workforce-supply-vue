@@ -106,6 +106,7 @@
         />
         <!-- <label for="scaleCheckBox"><input id="scaleCheckBox" type="checkbox" :value="$store.state.freezeScale" @input="$store.commit('changeFreezeScale')">Freeze Color Scale</label> -->
       </div>
+      <variable-select></variable-select>
       <!-- <div id="region-select-group">
         <label for="region-select" id="region-select-label">See Data By</label>
         <select id="region-select" :value="aggregationLevel" @change="changeAggregation">
@@ -153,6 +154,7 @@
 import SparkBarChartGroup from "./components/SparkBarChartGroup";
 import SpecialtySelect from "./components/SpecialtySelect";
 import RegionSelect from "./components/RegionSelect";
+import VariableSelect from "./components/VariableSelect";
 import LayerSelect from "./components/LayerSelect";
 import DownloadImageButton from "./components/DownloadImageButton";
 import DownloadDataButton from "./components/DownloadDataButton";
@@ -173,6 +175,7 @@ export default {
     Map,
     SpecialtySelect,
     RegionSelect,
+    VariableSelect,
     LayerSelect,
     DownloadImageButton,
     DownloadDataButton,
