@@ -1,8 +1,9 @@
  <template>
   <button class="button-icon" title="Save Image" @click="downloadImage">
-    <svg class="button-icon-svg has-fill-primary">
+    <svg class="button-icon-svg has-fill-primary" aria-hidden="true" focusable="false">
       <use xlink:href="#fa-image" />
     </svg>
+    <span class="button-icon-label">Save Image</span>
   </button>
   <!-- <button type="button" class="save-image" id="save-image" @click="downloadImage">Download as Image</button> -->
 </template>

@@ -1,8 +1,9 @@
  <template>
   <button class="button-icon" title="Download Data" @click="downloadData">
-    <svg class="button-icon-svg has-fill-primary">
+    <svg class="button-icon-svg has-fill-primary" aria-hidden="true" focusable="false">
       <use xlink:href="#fa-file-csv" />
     </svg>
+    <span class="button-icon-label">Download Data</span>
   </button>
   <!-- <button type="button" class="save-data" @click="downloadData">Download Data</button> -->
 </template>

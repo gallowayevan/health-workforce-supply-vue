@@ -101,6 +101,8 @@
           :value="year"
           @input="updateYear"
           type="range"
+          aria-label="Select a year"
+          :aria-valuetext="String(year)"
         />
         <!-- <label for="scaleCheckBox"><input id="scaleCheckBox" type="checkbox" :value="$store.state.freezeScale" @input="$store.commit('changeFreezeScale')">Freeze Color Scale</label> -->
       </div>
@@ -127,15 +129,16 @@
       </div>
       <region-select></region-select>
       <layer-select></layer-select>
-      <download-image-button></download-image-button>
-      <download-data-button></download-data-button>
-      <!-- <button type="button" class="aggregate" id="aggregate" @click="changeAggregation">{{aggregationText}}</button> -->
-      <!-- <button type="button" @click="runTutorial">Tutorial</button> -->
-      <button class="button-icon" title="Launch Tutorial" @click="runTutorial">
-        <svg class="button-icon-svg has-fill-primary">
-          <use xlink:href="#fa-question-circle" />
-        </svg>
-      </button>
+      <div class="action-buttons">
+        <download-image-button></download-image-button>
+        <download-data-button></download-data-button>
+        <button class="button-icon" title="Launch Tutorial" @click="runTutorial">
+          <svg class="button-icon-svg has-fill-primary" aria-hidden="true" focusable="false">
+            <use xlink:href="#fa-question-circle" />
+          </svg>
+          <span class="button-icon-label">Tutorial</span>
+        </button>
+      </div>
     </div>
 
     <div class="notes">
@@ -312,7 +315,21 @@ export default {
 #control-panel {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   margin: 1rem 0;
+}
+
+/* Keep the download/tutorial buttons together on their own row so they don't
+   jump between rows as the select boxes above them change width. */
+.action-buttons {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+.action-buttons .button-icon {
+  margin-top: 0;
 }
 
 /* #region-select-group {

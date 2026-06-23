@@ -8,7 +8,7 @@
       label="label"
       @input="changeRegion"
       :multiple="false"
-      :searchable="true"
+      :searchable="searchable"
       :showLabels="false"
       :allow-empty="false"
     ></multiselect>
@@ -25,17 +25,23 @@ export default {
   components: { Multiselect },
   computed: {
     ...mapState(["data", "aggregationLevel", "region"]),
+    // Counties are the only list long enough to need type-to-search; the other
+    // geographies have a handful of options, so keep them as plain dropdowns to
+    // match the other control-panel selects.
+    searchable() {
+      return this.aggregationLevel == "county";
+    },
     // Label adapts to the current unit of geography.
     label() {
       switch (this.aggregationLevel) {
         case "ahec":
-          return "Or select an AHEC";
+          return "Select an AHEC";
         case "medicaid":
-          return "Or select a Medicaid Region";
+          return "Select a Medicaid Region";
         case "ruralroots":
-          return "Or select a Rural Roots Hub";
+          return "Select a Rural Roots Hub";
         default:
-          return "Or select a county";
+          return "Select a county";
       }
     },
     allOption() {
@@ -78,10 +84,20 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
+/* Fixed width (not min-width) so the box never resizes with the selected value
+   and the controls/buttons after it don't shift around. */
 .region-select {
-  min-width: 220px;
+  width: 220px;
 }
 .region-select label {
   display: block;
+  white-space: nowrap;
+}
+/* Truncate long region names instead of letting them wrap/widen the box. */
+.region-select >>> .multiselect__single {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 </style>

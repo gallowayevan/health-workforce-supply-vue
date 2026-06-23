@@ -3,9 +3,16 @@
 }
 
 .button-icon-svg {
-    width: 35px;
-    height: 35px;
+    width: 22px;
+    height: 22px;
 
+  }
+
+  .button-icon-label {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #465d80;
+    font-weight: 600;
   }
 
   .button-icon-svg:hover {
@@ -38,18 +45,34 @@
     box-shadow: none;
     display: inline-flex;
     font-size: 1rem;
-    height: 2.25em;
+    height: auto;
     justify-content: flex-start;
     line-height: 1.5;
-    padding-bottom: calc(0.375em - 1px);
-    padding-left: calc(0.625em - 1px);
-    padding-right: calc(0.625em - 1px);
-    padding-top: calc(0.375em - 1px);
+    padding-bottom: 0.55em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.55em;
     position: relative;
     vertical-align: top;
+    border: 1px solid #dbdbdb;
   }
 
   .button-icon:hover {
 
-    background-color: #ffffff;
+    background-color: #f3f5f8;
+    border-color: #465d80;
+  }
+
+  .button-icon:focus,
+  .button-icon:focus-visible {
+    outline: 3px solid #2a4a7f;
+    outline-offset: 2px;
+    border-color: #465d80;
+    background-color: #f3f5f8;
+  }
+
+  /* Pressed state */
+  .button-icon:active {
+    background-color: #dce3ee;
+    border-color: #2a4a7f;
   }
