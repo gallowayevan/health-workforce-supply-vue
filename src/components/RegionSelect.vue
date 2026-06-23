@@ -11,6 +11,7 @@
       :searchable="searchable"
       :showLabels="false"
       :allow-empty="false"
+      :aria-label="label"
     ></multiselect>
   </div>
 </template>

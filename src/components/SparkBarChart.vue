@@ -12,7 +12,7 @@
 </g>
 <g :transform="`translate(${chartMargin.left}, ${chartMargin.top})`" v-show="region != 'North Carolina'">
     <path class="ncLine" :d="linePath"></path>
-  <text :x="variable.indexOf('percent') > -1 ? ncPosition[0] + 17 : ncPosition[0] + 8" :y="ncPosition[1] + 5" style="fill: #007fae; opacity: 0.5; font-size: 1em;">{{ncText}}</text>
+  <text :x="variable.indexOf('percent') > -1 ? ncPosition[0] + 17 : ncPosition[0] + 8" :y="ncPosition[1] + 5" style="fill: #00567a; font-size: 1em;">{{ncText}}</text>
 </g>
 <g :transform="`translate(${chartMargin.left}, ${chartMargin.top})`">
     <bar-text 

@@ -50,7 +50,7 @@ export default {
   }
 
   .yearLabel {
-    fill: rgb(189, 189, 189);
+    fill: #6f6f6f;
   }
 
 </style>

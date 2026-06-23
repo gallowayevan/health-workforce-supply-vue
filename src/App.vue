@@ -65,6 +65,11 @@
       class="failed"
     >We do not have data for medicaid regions for this profession. Please select another choice.</div>
     <div v-else>
+      <p class="sr-only">
+        The map and charts below present this data visually. To access the
+        underlying numbers as a table, use the "Download Data" button in the
+        controls below to download a CSV file.
+      </p>
       <div
         v-if="dataLoaded"
         class="scaling-svg-container"
@@ -91,7 +96,7 @@
       </div>
     </div>
 
-    <div id="control-panel">
+    <div id="control-panel" role="group" aria-label="Map controls">
       <div id="yearSlider">
         <div>Select a Year: {{year}}</div>
         <input
@@ -126,6 +131,7 @@
           :multiple="false"
           :searchable="false"
           :showLabels="false"
+          aria-label="See data by"
         ></multiselect>
       </div>
       <region-select></region-select>

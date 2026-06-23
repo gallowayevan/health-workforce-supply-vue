@@ -11,6 +11,7 @@
       :searchable="false"
       :showLabels="false"
       :allow-empty="false"
+      aria-label="Show on map"
     ></multiselect>
   </div>
 </template>

@@ -227,13 +227,13 @@ line {
 }
 
 .ncLine text {
-  fill: #007fae;
+  fill: #00567a;
   font-weight: 600;
   font-size: 1em;
 }
 
 .ncLine line {
-  stroke: #007fae;
+  stroke: #00567a;
   stroke-width: 3px;
 }
 

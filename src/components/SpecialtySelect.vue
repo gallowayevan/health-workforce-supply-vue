@@ -11,11 +11,12 @@
         @input="changeSpecialty"
         :showLabels="false"
         :allow-empty="false"
+        aria-label="Choose a profession"
       ></multiselect>
     </div>
     <transition>
       <div class="specialty-select" v-show="showSpecialtyBox">
-        <label>and a {{ value.profession === 'Certified Nurse Midwife' ? 'practice type' : ['Physician', 'Physician Assistant'].includes(value.profession) ? 'primary area of practice' : 'specialty' }}</label>
+        <label>{{ specialtyLabel }}</label>
         <multiselect
           :value="value"
           :options="specialties"
@@ -24,6 +25,7 @@
           @input="changeSpecialty"
           :showLabels="false"
           :allow-empty="false"
+          :aria-label="specialtyLabel"
         ></multiselect>
       </div>
     </transition>
@@ -50,6 +52,16 @@ export default {
   computed: {
     value: function() {
       return this.$store.state.specialty;
+    },
+    specialtyLabel: function() {
+      const profession = this.value.profession;
+      if (profession === "Certified Nurse Midwife") {
+        return "and a practice type";
+      }
+      if (["Physician", "Physician Assistant"].includes(profession)) {
+        return "and a primary area of practice";
+      }
+      return "and a specialty";
     },
     specialties: function() {
       const that = this;

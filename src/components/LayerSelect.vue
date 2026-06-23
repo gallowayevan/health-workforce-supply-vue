@@ -11,6 +11,7 @@
       :multiple="true"
       :searchable="false"
       :showLabels="false"
+      aria-label="Add a layer"
     ></multiselect>
   </div>
 </template>
