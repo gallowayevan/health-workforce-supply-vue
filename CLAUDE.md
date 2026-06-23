@@ -23,6 +23,20 @@ This is a manual build-and-copy workflow (no CI deploy from this repo):
    (overwrite the existing `app.js` and `chunk-vendors.js` there)
 4. Deploy happens from the **workforcehugo** repo, not this one.
 
+## Local development / testing
+
+- `npm run serve` runs the dev server (default http://localhost:8080).
+- In development, `src/env.js` points `ROOT_API` at `http://localhost:1313/`
+  (the local Hugo server), which serves both `specialties.csv` and the
+  `api/supply` data endpoint. If Hugo isn't running there, no profession or
+  county data loads and the map stays empty.
+- To test against real data without running Hugo, temporarily set the
+  `development` `ROOT_API` in `src/env.js` to the production URL (see the
+  `production` entry), reload, then **revert before committing** — env.js
+  should never be committed pointing dev at production.
+- Region/specialty data are fetched async, so dropdowns are empty until the
+  fetch resolves.
+
 ## Key files
 
 - `src/chart-text.js` — all the human-readable text in the viz:
