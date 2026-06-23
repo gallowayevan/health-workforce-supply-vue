@@ -90,7 +90,7 @@ export function getSourceText(currentSpecialty) {
   switch (currentSpecialty) {
     case "Dentist":
       currentSpecialtyText +=
-        "Data include active, licensed dentists in practice in North Carolina as of October 31 of each year.  Dentist data are derived from the North Carolina State Board of Dental Examiners.";
+        "Data include active, licensed dentists in practice in North Carolina as of October 31 of each year.  Dentist data are derived from the North Carolina State Board of Dental Examiners. About one-third of dentists do not report a business address to the Board; in these cases, county placement is based on the mailing or home address on file.";
       break;
     case "Physician":
       currentSpecialtyText +=
@@ -98,7 +98,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Pharmacist":
       currentSpecialtyText +=
-        "Data include active, licensed pharmacists in practice in North Carolina as of October 31 of each year.  Pharmacist data are derived from the North Carolina Board of Pharmacy.";
+        "Data include active, licensed pharmacists in practice in North Carolina as of October 31 of each year.  Pharmacist data are derived from the North Carolina Board of Pharmacy. Beginning in 2018, only mailing addresses are available for licensees, so these are used to place pharmacists in a county.";
       break;
     case "Dental Hygienist":
       currentSpecialtyText +=
@@ -122,7 +122,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Certified Nurse Midwife":
       currentSpecialtyText +=
-        "Data include active, licensed certified nurse midwives in practice in North Carolina as of October 31 of each year.  Certified nurse midwife data are derived from the North Carolina Board of Nursing.";
+        "Data include active, licensed certified nurse midwives in practice in North Carolina as of October 31 of each year.  Certified nurse midwife data are derived from the North Carolina Board of Nursing. Effective in 2023, North Carolina Session Law 2023-14 allows certified nurse midwives with at least 24 months and 4,000 hours of practice experience to practice independently, without physician supervision; those who have not yet met this requirement practice under a collaborative provider agreement. Data for the independent practice type begin in 2023. The apparent decline in the collaborative practice type after 2023 reflects midwives moving into the independent category rather than a decrease in the overall certified nurse midwife workforce.";
       break;
     case "Occupational Therapist":
       currentSpecialtyText +=
@@ -150,7 +150,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Psychologist":
       currentSpecialtyText +=
-        "Data include active, licensed psychologists in practice in North Carolina as of October 31 of each year.  Psychologist data are derived from the North Carolina Psychology Board.";
+        "Data include active, licensed psychologists in practice in North Carolina as of October 31 of each year.  Psychologist data are derived from the North Carolina Psychology Board. Beginning in 2025, only home or mailing addresses are available, so these are used to place psychologists in a county.";
       break;
     case "Psychological Associate":
       currentSpecialtyText +=
