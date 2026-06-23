@@ -77,6 +77,12 @@ export const store = new Vuex.Store({
 
       updateVariables(state);
     },
+    // Set the region directly (no toggle). Used by the region dropdown, where
+    // re-selecting the current region should not clear it the way a map click does.
+    setRegion(state, region) {
+      state.region = region;
+      updateVariables(state);
+    },
     changeYearExtent(state, newExtent) {
       state.yearExtent = newExtent;
     },

@@ -125,6 +125,7 @@
           :showLabels="false"
         ></multiselect>
       </div>
+      <region-select></region-select>
       <layer-select></layer-select>
       <download-image-button></download-image-button>
       <download-data-button></download-data-button>
@@ -148,6 +149,7 @@
 <script>
 import SparkBarChartGroup from "./components/SparkBarChartGroup";
 import SpecialtySelect from "./components/SpecialtySelect";
+import RegionSelect from "./components/RegionSelect";
 import LayerSelect from "./components/LayerSelect";
 import DownloadImageButton from "./components/DownloadImageButton";
 import DownloadDataButton from "./components/DownloadDataButton";
@@ -167,6 +169,7 @@ export default {
     SparkBarChartGroup,
     Map,
     SpecialtySelect,
+    RegionSelect,
     LayerSelect,
     DownloadImageButton,
     DownloadDataButton,
