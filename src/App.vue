@@ -97,8 +97,8 @@
     </div>
 
     <div id="control-panel" role="group" aria-label="Map controls">
-      <div id="yearSlider">
-        <div>Select a Year: {{year}}</div>
+      <div id="yearSlider" class="control-field">
+        <label>Select a Year: {{year}}</label>
         <input
           :min="yearExtent[0]"
           :max="yearExtent[1]"
@@ -120,7 +120,7 @@
           <option value="medicaid" :disabled="!medicaidRegions">Medicaid Region</option>
         </select>
       </div>-->
-      <div class="layer-select">
+      <div class="layer-select control-field">
         <label>See Data By</label>
         <multiselect
           :value="aggregationSelectValue"
@@ -136,16 +136,14 @@
       </div>
       <region-select></region-select>
       <layer-select></layer-select>
-      <div class="action-buttons">
-        <download-image-button></download-image-button>
-        <download-data-button></download-data-button>
-        <button class="button-icon" title="Launch Tutorial" @click="runTutorial">
-          <svg class="button-icon-svg has-fill-primary" aria-hidden="true" focusable="false">
-            <use xlink:href="#fa-question-circle" />
-          </svg>
-          <span class="button-icon-label">Tutorial</span>
-        </button>
-      </div>
+      <download-image-button></download-image-button>
+      <download-data-button></download-data-button>
+      <button class="button-icon" title="Launch Tutorial" @click="runTutorial">
+        <svg class="button-icon-svg has-fill-primary" aria-hidden="true" focusable="false">
+          <use xlink:href="#fa-question-circle" />
+        </svg>
+        <span class="button-icon-label">Tutorial</span>
+      </button>
     </div>
 
     <div class="notes">
@@ -324,21 +322,9 @@ export default {
 #control-panel {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
+  gap: 14px 20px;
   margin: 1rem 0;
-}
-
-/* Keep the download/tutorial buttons together on their own row so they don't
-   jump between rows as the select boxes above them change width. */
-.action-buttons {
-  flex-basis: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 1rem;
-}
-.action-buttons .button-icon {
-  margin-top: 0;
 }
 
 /* #region-select-group {
@@ -350,20 +336,14 @@ export default {
   margin-right: 5px;
 }
 
-#control-panel > * {
-  margin-right: 5px;
-}
-#control-panel > div {
-  margin-right: 20px;
-}
-
 #yearSlider {
-  margin-bottom: 1rem;
-  font-weight: 600;
+  width: 220px;
 }
 
 #yearSlider input {
   margin-bottom: 0;
+  width: 100%;
+  height: 40px;
 }
 
 #yearSlider input[type="checkbox"] {

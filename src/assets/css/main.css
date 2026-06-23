@@ -1,5 +1,22 @@
-.layer-select {
-  min-width: 170px;
+/* Shared layout for each labeled control in the control panel: a label
+   stacked above its input, with a consistent width and label style. */
+.control-field {
+  display: flex;
+  flex-direction: column;
+}
+.control-field > label {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.layer-select,
+.region-select,
+.variable-select {
+  width: 220px;
 }
 
 /* Visually hidden but available to screen readers. */
@@ -37,34 +54,22 @@
   }
 
   .button-icon {
-    margin-top: 25px;
     background-color: white;
-    border-color: #dbdbdb;
-    border-width: 1px;
     color: #6c7480;
     cursor: pointer;
-    justify-content: center;
-    padding-bottom: calc(0.375em - 1px);
-    padding-left: 0.75em;
-    padding-right: 0.75em;
-    padding-top: calc(0.375em - 1px);
-    text-align: center;
     white-space: nowrap;
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
-    border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: none;
     display: inline-flex;
     font-size: 1rem;
-    height: auto;
+    min-height: 40px;
     justify-content: flex-start;
     line-height: 1.5;
-    padding-bottom: 0.55em;
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 0.55em;
     position: relative;
     vertical-align: top;
     border: 1px solid #dbdbdb;

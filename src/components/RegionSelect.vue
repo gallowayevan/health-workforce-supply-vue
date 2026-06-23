@@ -1,5 +1,5 @@
 <template>
-  <div class="region-select">
+  <div class="region-select control-field">
     <label>{{ label }}</label>
     <multiselect
       :value="selectedOption"
@@ -89,10 +89,6 @@ export default {
    and the controls/buttons after it don't shift around. */
 .region-select {
   width: 220px;
-}
-.region-select label {
-  display: block;
-  white-space: nowrap;
 }
 /* Truncate long region names instead of letting them wrap/widen the box. */
 .region-select >>> .multiselect__single {

@@ -1,5 +1,5 @@
 <template>
-  <div class="variable-select">
+  <div class="variable-select control-field">
     <label>Show on map</label>
     <multiselect
       :value="selectedOption"
@@ -60,11 +60,7 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
 .variable-select {
-  width: 240px;
-}
-.variable-select label {
-  display: block;
-  white-space: nowrap;
+  width: 220px;
 }
 /* Truncate the (sometimes long) selected measure instead of widening the box. */
 .variable-select >>> .multiselect__single {

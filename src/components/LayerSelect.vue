@@ -1,5 +1,5 @@
 <template>
-  <div class="layer-select">
+  <div class="layer-select control-field">
     <label>Add a Layer</label>
     <multiselect
       :value="layers"
