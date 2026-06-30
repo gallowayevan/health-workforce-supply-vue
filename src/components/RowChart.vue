@@ -8,7 +8,7 @@
         class="ahecLabel"
         dx="-10"
         :dy="yScale.bandwidth()/1.5"
-      >{{item[0] == "Wake AHEC" ? "Wake" : aggregationLevel == "medicaid" ? getMedicaidRegionName(item[0]) : item[0]}}</text>
+      >{{item[0] == "Wake AHEC" ? "Wake" : aggregationLevel == "medicaid" ? getMedicaidRegionName(item[0]) : aggregationLevel == "ruralroots" ? ruralRootsShort(item[0]) : item[0]}}</text>
     </g>
     <g
       class="xAxis"
@@ -175,6 +175,18 @@ export default {
     },
     getMedicaidRegionName: function(numericRegionName) {
       return medicaidRegionName.get(numericRegionName);
+    },
+    // Short labels for the row chart only (full hub names overflow the margin).
+    ruralRootsShort: function(name) {
+      const m = {
+        "Region 1 (Impact Health)": "Impact (1)",
+        "Region 2 (Trillium Health Resources)": "Trillium (2)",
+        "Region 3 (Vaya Health)": "Vaya (3)",
+        "Region 4 (UNC Health)": "UNC (4)",
+        "Region 5 (Trillium Health Resources)": "Trillium (5)",
+        "Region 6 (Access East)": "Access (6)"
+      };
+      return m[name] || name;
     }
   }
 };

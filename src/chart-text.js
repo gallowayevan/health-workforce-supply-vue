@@ -150,7 +150,7 @@ export function getSourceText(currentSpecialty) {
       break;
     case "Psychologist":
       currentSpecialtyText +=
-        "Data include active, licensed psychologists in practice in North Carolina as of October 31 of each year.  Psychologist data are derived from the North Carolina Psychology Board. Beginning in 2025, only home or mailing addresses are available, so these are used to place psychologists in a county.";
+        "Data include active, licensed psychologists in practice in North Carolina as of October 31 of each year.  Psychologist data are derived from the North Carolina Psychology Board.";
       break;
     case "Psychological Associate":
       currentSpecialtyText +=
